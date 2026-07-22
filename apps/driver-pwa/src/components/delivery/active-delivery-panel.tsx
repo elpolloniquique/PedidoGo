@@ -3,6 +3,7 @@
 import { Button } from '@pedidosgo/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { DeliveryEvidenceUpload } from '@/components/delivery/delivery-evidence-upload';
 import { advanceDeliveryAction } from '@/app/(app)/delivery/actions';
 import { DeliveryMap } from '@/components/delivery/delivery-map';
 import { AvailabilityPanel } from '@/components/gps/availability-panel';
@@ -29,7 +30,13 @@ const GEOFENCE_STATUSES = new Set([
   'delivered',
 ]);
 
-export function ActiveDeliveryPanel({ delivery }: { delivery: ActiveDelivery }) {
+export function ActiveDeliveryPanel({
+  delivery,
+  evidenceCount = 0,
+}: {
+  delivery: ActiveDelivery;
+  evidenceCount?: number;
+}) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -109,6 +116,14 @@ export function ActiveDeliveryPanel({ delivery }: { delivery: ActiveDelivery }) 
         Código retiro: <strong>{delivery.pickupCode}</strong> · PIN:{' '}
         <strong>{delivery.deliveryPin}</strong>
       </p>
+
+      {['heading_to_customer', 'driver_arrived_customer'].includes(delivery.status) ? (
+        <DeliveryEvidenceUpload
+          deliveryRequestId={delivery.deliveryRequestId}
+          evidenceCount={evidenceCount}
+        />
+      ) : null}
+
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
       {pendingForce ? (
         <Button

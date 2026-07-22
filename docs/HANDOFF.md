@@ -70,7 +70,7 @@ PedidoGo/
 Auth, drivers, PWA, comercios, pedidos/ofertas, Mapbox, GPS, Realtime, finanzas, tracking público, notificaciones, ratings, hardening, tests smoke, docs.
 
 ### Pendiente / opcional post-lanzamiento
-- UI evidencia de entrega (foto)  
+- UI evidencia de entrega (foto) — **hecho en Fase 17**  
 - Webhooks merchant  
 - Módulo soporte / tickets  
 - Edge Functions  

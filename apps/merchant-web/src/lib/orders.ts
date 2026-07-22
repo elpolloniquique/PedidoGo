@@ -219,6 +219,25 @@ export async function getOrderDriverLocation(orderId: string): Promise<{
   };
 }
 
+export async function getOrderDeliveryEvidence(orderId: string): Promise<
+  {
+    evidenceId: string;
+    evidenceType: string;
+    storagePath: string;
+    createdAt: string;
+  }[]
+> {
+  await requireMerchantContext();
+  const supabase = await createClient();
+  const { data } = await supabase.rpc('list_delivery_evidence', { p_order_id: orderId });
+  return (data ?? []).map((row: Record<string, unknown>) => ({
+    evidenceId: row.evidence_id as string,
+    evidenceType: row.evidence_type as string,
+    storagePath: row.storage_path as string,
+    createdAt: row.created_at as string,
+  }));
+}
+
 export async function getOrderRating(orderId: string): Promise<{
   ratingId: string;
   score: number;

@@ -32,6 +32,7 @@
 | 14 | [FASE-14.md](./FASE-14.md) | Hardening / producción |
 | 15 | [FASE-15.md](./FASE-15.md) | Tests E2E + QA |
 | 16 | [FASE-16.md](./FASE-16.md) | Docs finales / cierre |
+| 17 | [FASE-17.md](./FASE-17.md) | Evidencia fotográfica de entrega |
 
 ## Scripts SQL útiles
 

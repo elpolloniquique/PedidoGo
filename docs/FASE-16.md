@@ -58,4 +58,4 @@ Pendiente operativo típico del cliente: terminar deploys Vercel, dominios y un 
 1. Completar 4 deploys Vercel + Redirect URLs  
 2. Dominios propios (`admin.`, `app.`, `driver.`, `track.`)  
 3. Monitoreo (uptime en `/api/health`)  
-4. Backlog post-MVP: evidencia foto, webhooks, dashboards  
+4. Post-MVP: **Fase 17 evidencia foto** (ver `FASE-17.md`), webhooks, dashboards  

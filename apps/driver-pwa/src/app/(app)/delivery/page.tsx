@@ -1,6 +1,6 @@
 import { ActiveDeliveryPanel } from '@/components/delivery/active-delivery-panel';
 import { DeliveryRealtimeBridge } from '@/components/delivery/delivery-realtime-bridge';
-import { getMyActiveDelivery } from '@/lib/delivery';
+import { countDeliveryEvidence, getMyActiveDelivery } from '@/lib/delivery';
 import { requireDriver } from '@/lib/driver';
 import { Alert } from '@pedidosgo/ui';
 import Link from 'next/link';
@@ -26,10 +26,12 @@ export default async function DeliveryPage() {
     );
   }
 
+  const evidenceCount = await countDeliveryEvidence(delivery.deliveryRequestId);
+
   return (
     <>
       <DeliveryRealtimeBridge deliveryRequestId={delivery.deliveryRequestId} />
-      <ActiveDeliveryPanel delivery={delivery} />
+      <ActiveDeliveryPanel delivery={delivery} evidenceCount={evidenceCount} />
     </>
   );
 }

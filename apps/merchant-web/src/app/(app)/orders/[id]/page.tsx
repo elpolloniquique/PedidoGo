@@ -1,7 +1,9 @@
+import { DeliveryEvidenceGallery } from '@/components/orders/delivery-evidence-gallery';
 import { DriverRatingPanel } from '@/components/orders/driver-rating-panel';
 import { OrderActionsPanel } from '@/components/orders/order-actions-panel';
 import { OrderMapPanel } from '@/components/orders/order-map-panel';
 import {
+  getOrderDeliveryEvidence,
   getOrderDetail,
   getOrderDriverLocation,
   getOrderMapPoints,
@@ -19,10 +21,11 @@ export default async function OrderDetailPage({
   const { id } = await params;
   const order = await getOrderDetail(id);
   if (!order) notFound();
-  const [mapPoints, driverLoc, rating] = await Promise.all([
+  const [mapPoints, driverLoc, rating, evidence] = await Promise.all([
     getOrderMapPoints(id),
     getOrderDriverLocation(id),
     getOrderRating(id),
+    getOrderDeliveryEvidence(id),
   ]);
 
   return (
@@ -77,6 +80,11 @@ export default async function OrderDetailPage({
           Subtotal ${order.subtotal.toLocaleString('es-CL')} · Delivery $
           {order.deliveryFee.toLocaleString('es-CL')}
         </p>
+      </div>
+
+      <div>
+        <h3 className="mb-2 font-semibold text-slate-900">Evidencia de entrega</h3>
+        <DeliveryEvidenceGallery items={evidence} />
       </div>
 
       {order.status === 'delivered' && order.assignment ? (

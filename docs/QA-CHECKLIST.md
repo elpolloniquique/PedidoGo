@@ -67,7 +67,8 @@ Usa dos navegadores o ventana normal + incógnito para merchant y driver.
 
 ---
 
-## 5. Flujo integrado (happy path)
+- [ ] Driver: subir evidencia foto antes de entregar  
+- [ ] Merchant: ver galería de evidencia en detalle pedido  
 
 1. [ ] Merchant crea pedido y publica  
 2. [ ] Driver oferta  

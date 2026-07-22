@@ -71,3 +71,12 @@ export async function getMyActiveDelivery(): Promise<ActiveDelivery | null> {
     branchLng: num(row.branch_lng),
   };
 }
+
+export async function countDeliveryEvidence(deliveryRequestId: string): Promise<number> {
+  await requireDriver();
+  const supabase = await createClient();
+  const { data } = await supabase.rpc('count_delivery_evidence', {
+    p_delivery_request_id: deliveryRequestId,
+  });
+  return typeof data === 'number' ? data : Number(data ?? 0);
+}

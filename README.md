@@ -78,9 +78,11 @@ pnpm format       # Prettier
 
 ## Fase actual
 
-**Fase 16** — Documentación final y cierre del MVP.
+**Fase 17** — Evidencia fotográfica de entrega.
 
-Anteriores: [docs/FASE-1.md](docs/FASE-1.md) … [docs/FASE-15.md](docs/FASE-15.md).
+Ver [docs/FASE-17.md](docs/FASE-17.md).
+
+Anteriores: [docs/FASE-1.md](docs/FASE-1.md) … [docs/FASE-16.md](docs/FASE-16.md).
 
 ## Marca
 
