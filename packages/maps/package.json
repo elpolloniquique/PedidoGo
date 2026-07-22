@@ -1,0 +1,35 @@
+{
+  "name": "@pedidosgo/maps",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./map-view": "./src/components/map-view.tsx",
+    "./address-search": "./src/components/address-search.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo"
+  },
+  "dependencies": {
+    "@pedidosgo/types": "workspace:*",
+    "mapbox-gl": "^3.9.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@pedidosgo/typescript-config": "workspace:*",
+    "@types/geojson": "^7946.0.16",
+    "@types/mapbox-gl": "^3.4.1",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.2"
+  }
+}

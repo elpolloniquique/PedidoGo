@@ -1,0 +1,13 @@
+{
+  "name": "@pedidosgo/tailwind-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "exports": {
+    ".": "./shared-styles.css",
+    "./theme": "./theme.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}

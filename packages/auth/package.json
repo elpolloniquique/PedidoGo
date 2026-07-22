@@ -1,0 +1,21 @@
+{
+  "name": "@pedidosgo/auth",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo"
+  },
+  "dependencies": {
+    "@pedidosgo/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@pedidosgo/typescript-config": "workspace:*",
+    "typescript": "^5.7.2"
+  }
+}

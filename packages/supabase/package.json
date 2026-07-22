@@ -1,0 +1,30 @@
+{
+  "name": "@pedidosgo/supabase",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./server": "./src/server.ts",
+    "./middleware": "./src/middleware.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist .turbo"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.47.10"
+  },
+  "peerDependencies": {
+    "next": "^15.0.0"
+  },
+  "devDependencies": {
+    "@pedidosgo/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "next": "^15.1.3",
+    "typescript": "^5.7.2"
+  }
+}

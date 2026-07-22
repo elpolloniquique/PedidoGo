@@ -1,0 +1,36 @@
+{
+  "name": "@pedidosgo/customer-tracking",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3004",
+    "build": "next build",
+    "start": "next start --port 3004",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf .next .turbo"
+  },
+  "dependencies": {
+    "@pedidosgo/config": "workspace:*",
+    "@pedidosgo/maps": "workspace:*",
+    "@pedidosgo/shared": "workspace:*",
+    "@pedidosgo/supabase": "workspace:*",
+    "@pedidosgo/types": "workspace:*",
+    "@pedidosgo/ui": "workspace:*",
+    "next": "^15.1.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@pedidosgo/eslint-config": "workspace:*",
+    "@pedidosgo/tailwind-config": "workspace:*",
+    "@pedidosgo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "eslint": "^9.17.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2"
+  }
+}

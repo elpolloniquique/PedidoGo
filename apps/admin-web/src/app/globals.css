@@ -1,0 +1,13 @@
+﻿@import "tailwindcss";
+@import "@pedidosgo/tailwind-config/theme";
+@import "@pedidosgo/ui/styles.css";
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

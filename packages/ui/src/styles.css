@@ -1,0 +1,8 @@
+/* Estilos base compartidos del design system PedidosGo */
+:root {
+  --color-brand-600: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+}
