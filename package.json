@@ -8,6 +8,10 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:unit": "pnpm --filter @pedidosgo/validation test",
+    "test:e2e": "pnpm --filter @pedidosgo/e2e test",
+    "test:e2e:ui": "pnpm --filter @pedidosgo/e2e test:ui",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json,css}\"",
     "clean": "turbo run clean && rimraf node_modules"

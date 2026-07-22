@@ -1,6 +1,13 @@
-# PedidosGo — Plataforma de delivery
+# RapideX / PedidosGo — Plataforma de delivery
 
-Monorepo **Turborepo + pnpm** para la plataforma PedidosGo: conecta comercios con repartidores independientes (modelo tipo negociación de tarifas, marca y código propios).
+Monorepo **Turborepo + pnpm** que conecta comercios con repartidores independientes (negociación de tarifas, marca configurable).
+
+> Documentación completa: **[docs/INDEX.md](docs/INDEX.md)**
+
+## Estado
+
+**MVP cerrado (fases 0–16):** código, BD, tests smoke y docs de handoff listos.  
+Pendiente típico del cliente: deploys Vercel + QA en producción.
 
 ## Aplicaciones
 
@@ -13,14 +20,15 @@ Monorepo **Turborepo + pnpm** para la plataforma PedidosGo: conecta comercios co
 
 ## Paquetes compartidos
 
-- `@pedidosgo/config` — Marca y configuración central
+- `@pedidosgo/config` — Marca, puertos, cabeceras de seguridad
 - `@pedidosgo/types` — Tipos TypeScript
-- `@pedidosgo/validation` — Esquemas Zod
+- `@pedidosgo/validation` — Esquemas Zod (+ Vitest)
 - `@pedidosgo/ui` — Componentes UI base
 - `@pedidosgo/supabase` — Clientes Supabase (browser/server)
 - `@pedidosgo/maps` — Mapbox (geocoding, directions, MapView)
 - `@pedidosgo/auth` — Utilidades de roles
 - `@pedidosgo/shared` — Utilidades comunes
+- `@pedidosgo/e2e` — Playwright smoke
 
 ## Requisitos
 
@@ -30,17 +38,12 @@ Monorepo **Turborepo + pnpm** para la plataforma PedidosGo: conecta comercios co
 ## Inicio rápido
 
 ```bash
-# Instalar dependencias
 pnpm install
-
-# Copiar variables de entorno
 cp .env.example .env.local
+# Completa Supabase + Mapbox en .env.local
 
-# Desarrollo (todas las apps)
-pnpm dev
-
-# O una app específica
-pnpm --filter @pedidosgo/admin-web dev
+pnpm --filter @pedidosgo/merchant-web dev
+# o: pnpm dev  (todas las apps)
 ```
 
 ## Scripts
@@ -49,24 +52,36 @@ pnpm --filter @pedidosgo/admin-web dev
 pnpm build        # Build de todo el monorepo
 pnpm lint         # ESLint
 pnpm typecheck    # TypeScript
+pnpm test:unit    # Vitest (validation)
+pnpm test:e2e     # Playwright smoke (requiere build o dev)
 pnpm format       # Prettier
 ```
 
-## Infraestructura (fases posteriores)
+## Documentación
 
-- **Supabase** — Auth, PostgreSQL, PostGIS, Realtime, Storage, Edge Functions
+| Guía | Archivo |
+|------|---------|
+| Índice | [docs/INDEX.md](docs/INDEX.md) |
+| Arquitectura | [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) |
+| Operación diaria | [docs/OPERACION.md](docs/OPERACION.md) |
+| Deploy Vercel | [docs/DEPLOY-VERCEL.md](docs/DEPLOY-VERCEL.md) |
+| QA manual | [docs/QA-CHECKLIST.md](docs/QA-CHECKLIST.md) |
+| Handoff | [docs/HANDOFF.md](docs/HANDOFF.md) |
+| Cierre fases | [docs/FASE-16.md](docs/FASE-16.md) |
+
+## Infraestructura
+
+- **Supabase** — Auth, PostgreSQL, PostGIS, Realtime, Storage
 - **Mapbox** — Mapas, rutas, geocodificación
 - **Vercel** — Despliegue de las 4 apps
-- **GitHub Actions** — CI
+- **GitHub Actions** — CI (typecheck, lint, build, unit, e2e)
 
 ## Fase actual
 
-**Fase 13** — Notificaciones in-app + ratings de repartidor.
+**Fase 16** — Documentación final y cierre del MVP.
 
-Ver `docs/FASE-13.md`.
-
-Anteriores: `docs/FASE-1.md` … `docs/FASE-12.md`.
+Anteriores: [docs/FASE-1.md](docs/FASE-1.md) … [docs/FASE-15.md](docs/FASE-15.md).
 
 ## Marca
 
-El nombre **PedidosGo** y colores se configuran vía variables de entorno (`NEXT_PUBLIC_APP_*`) y en Fase 2 también en la tabla `app_settings` de Supabase.
+Nombre y colores vía `NEXT_PUBLIC_APP_*` y tabla `app_settings` en Supabase (script `supabase/scripts/actualizar_marca_rapidex.sql`).

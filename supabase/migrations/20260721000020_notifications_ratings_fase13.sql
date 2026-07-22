@@ -359,7 +359,7 @@ BEGIN
     PERFORM public.notify_driver_user(
       NEW.id,
       'Solicitud aprobada',
-      'Ya puedes recibir pedidos en PedidosGo.',
+      'Ya puedes recibir pedidos en RapideX.',
       'system',
       jsonb_build_object('driver_id', NEW.id, 'status', NEW.status::TEXT)
     );

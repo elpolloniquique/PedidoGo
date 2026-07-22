@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { brandConfig } from '@pedidosgo/config';
 import { Alert, Button } from '@pedidosgo/ui';
+import { useEffect, useState } from 'react';
 import {
   type BeforeInstallPromptEvent,
   isIosDevice,
@@ -99,7 +100,8 @@ export function InstallPrompt({ driverApproved, driverId }: InstallPromptProps) 
     <div className="mb-4 rounded-2xl border border-teal-200 bg-teal-50/80 p-4 shadow-sm">
       <h3 className="text-lg font-semibold text-teal-950">Tu cuenta fue aprobada</h3>
       <p className="mt-1 text-sm text-teal-900/80">
-        Instala PedidosGo en tu celular para recibir pedidos, usar el GPS y trabajar más fácilmente.
+        Instala {brandConfig.appName} en tu celular para recibir pedidos, usar el GPS y trabajar
+        más fácilmente.
       </p>
 
       {iosGuide ? (
@@ -108,7 +110,7 @@ export function InstallPrompt({ driverApproved, driverId }: InstallPromptProps) 
           <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm">
             <li>Presiona el botón Compartir de Safari.</li>
             <li>Selecciona “Agregar a pantalla de inicio”.</li>
-            <li>Confirma el nombre PedidosGo.</li>
+            <li>Confirma el nombre {brandConfig.appName}.</li>
             <li>Presiona “Agregar”.</li>
           </ol>
         </Alert>

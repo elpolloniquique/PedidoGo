@@ -145,6 +145,8 @@ export function trackingErrorMessage(code: string | null): string {
       return 'Este enlace de seguimiento ya expiró.';
     case 'disabled':
       return 'El seguimiento público no está disponible en este momento.';
+    case 'rate_limited':
+      return 'Demasiadas consultas. Espera un momento e intenta de nuevo.';
     case 'invalid':
       return 'El código de seguimiento no es válido.';
     case 'not_found':

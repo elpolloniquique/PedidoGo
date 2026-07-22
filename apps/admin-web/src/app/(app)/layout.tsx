@@ -30,6 +30,11 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
             Finanzas
           </Button>
         </Link>
+        <Link href="/system">
+          <Button variant="ghost" size="md">
+            Sistema
+          </Button>
+        </Link>
         <Link href="/profile">
           <Button variant="ghost" size="md">
             Perfil

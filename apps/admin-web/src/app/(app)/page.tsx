@@ -25,6 +25,11 @@ export default async function AdminHomePage() {
             Finanzas
           </Button>
         </Link>
+        <Link href="/system">
+          <Button size="lg" variant="secondary">
+            Sistema
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export async function middleware(request: NextRequest) {
       '/manifest.json',
       '/sw.js',
       '/icons',
+      '/api/health',
     ],
     requireAuth: true,
     loginPath: '/login',

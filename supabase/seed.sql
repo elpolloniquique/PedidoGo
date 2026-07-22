@@ -49,17 +49,17 @@ JOIN public.permissions p ON p.slug IN ('delivery.deliver', 'finance.read')
 WHERE r.slug = 'driver'
 ON CONFLICT DO NOTHING;
 
--- Marca PedidosGo (también disponible vía env en frontend)
+-- Marca RapideX (también disponible vía env en frontend)
 INSERT INTO public.app_settings (key, value, description, is_public) VALUES
-  ('app_name', 'PedidosGo', 'Nombre de la aplicación', TRUE),
-  ('app_short_name', 'PedidosGo', 'Nombre corto', TRUE),
+  ('app_name', 'RapideX', 'Nombre de la aplicación', TRUE),
+  ('app_short_name', 'RapideX', 'Nombre corto', TRUE),
   ('app_description', 'Plataforma inteligente de delivery para comercios y repartidores', 'Descripción', TRUE),
   ('app_logo_url', '', 'URL del logotipo', TRUE),
   ('app_primary_color', '#0F766E', 'Color primario', TRUE),
   ('app_secondary_color', '#134E4A', 'Color secundario', TRUE),
-  ('app_support_email', 'soporte@pedidosgo.cl', 'Correo de soporte', TRUE),
+  ('app_support_email', 'soporte@rapidex.cl', 'Correo de soporte', TRUE),
   ('app_support_phone', '', 'Teléfono de soporte', TRUE),
-  ('app_domain', 'pedidosgo.cl', 'Dominio principal', TRUE),
+  ('app_domain', 'rapidex.cl', 'Dominio principal', TRUE),
   ('commission_percentage', '0.005', 'Comisión plataforma (0.5%)', FALSE),
   ('minimum_commission', '0', 'Comisión mínima CLP', FALSE),
   ('grace_debt_limit', '50000', 'Límite de deuda con gracia CLP', FALSE),
@@ -81,7 +81,7 @@ INSERT INTO public.commission_rules (
   is_active
 )
 SELECT
-  'Comisión estándar PedidosGo',
+  'Comisión estándar RapideX',
   0.005,
   0,
   NULL,
@@ -89,8 +89,12 @@ SELECT
   100000,
   TRUE
 WHERE NOT EXISTS (
-  SELECT 1 FROM public.commission_rules WHERE name = 'Comisión estándar PedidosGo'
+  SELECT 1 FROM public.commission_rules WHERE name IN ('Comisión estándar RapideX', 'Comisión estándar PedidosGo')
 );
+
+UPDATE public.commission_rules
+SET name = 'Comisión estándar RapideX'
+WHERE name = 'Comisión estándar PedidosGo';
 
 -- Feature flags iniciales
 INSERT INTO public.feature_flags (key, enabled, description) VALUES

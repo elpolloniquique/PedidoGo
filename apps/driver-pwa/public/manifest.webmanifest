@@ -1,6 +1,6 @@
 {
-  "name": "PedidosGo Repartidores",
-  "short_name": "PedidosGo",
+  "name": "RapideX Repartidores",
+  "short_name": "RapideX",
   "description": "Aplicativo profesional para repartidores",
   "start_url": "/",
   "display": "standalone",
@@ -8,6 +8,8 @@
   "theme_color": "#0F766E",
   "orientation": "portrait",
   "scope": "/",
+  "lang": "es",
+  "categories": ["business", "productivity"],
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -26,6 +28,20 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Inicio",
+      "short_name": "Inicio",
+      "url": "/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Solicitud",
+      "short_name": "Solicitud",
+      "url": "/application",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

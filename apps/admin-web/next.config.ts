@@ -1,4 +1,5 @@
-﻿import type { NextConfig } from 'next';
+import type { NextConfig } from 'next';
+import { buildSecurityHeaderRoutes } from '@pedidosgo/config';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -42,6 +43,7 @@ const nextConfig: NextConfig = {
     '@pedidosgo/auth',
     '@pedidosgo/maps',
   ],
+  headers: async () => buildSecurityHeaderRoutes(),
 };
 
 export default nextConfig;

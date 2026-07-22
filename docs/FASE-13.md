@@ -60,4 +60,4 @@ O verifica: `supabase/scripts/verificar_fase13.sql`
 
 ## Próxima fase
 
-**Fase 14** — Hardening / seguridad + checklist de producción (o paneles avanzados).
+**Fase 15** — Pruebas E2E + checklist QA manual.

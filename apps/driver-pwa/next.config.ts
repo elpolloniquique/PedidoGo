@@ -1,4 +1,5 @@
-﻿import type { NextConfig } from 'next';
+import type { NextConfig } from 'next';
+import { buildSecurityHeaderRoutes } from '@pedidosgo/config';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -42,19 +43,20 @@ const nextConfig: NextConfig = {
     '@pedidosgo/auth',
     '@pedidosgo/maps',
   ],
-  headers: async () => [
-    {
-      source: '/sw.js',
-      headers: [
-        { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
-        { key: 'Service-Worker-Allowed', value: '/' },
-      ],
-    },
-    {
-      source: '/manifest.json',
-      headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }],
-    },
-  ],
+  headers: async () =>
+    buildSecurityHeaderRoutes([
+      {
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+          { key: 'Service-Worker-Allowed', value: '/' },
+        ],
+      },
+      {
+        source: '/manifest.json',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' }],
+      },
+    ]),
 };
 
 export default nextConfig;
