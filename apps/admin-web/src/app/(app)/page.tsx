@@ -5,15 +5,15 @@ export default async function AdminHomePage() {
   const profile = await requireAppUser();
 
   return (
-    <div className="space-y-6">
+    <>
       <Surface>
         <p className="text-xs font-semibold tracking-[0.16em] text-teal-800 uppercase">
           Bienvenido
         </p>
-        <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-ink)]">
+        <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-[2.1rem]">
           Hola{profile.firstName ? `, ${profile.firstName}` : ''}
         </h2>
-        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+        <p className="mt-3 text-sm text-[var(--color-ink-muted)]">
           Rol activo:{' '}
           <span className="rounded-full bg-teal-50 px-2.5 py-1 text-xs font-semibold text-teal-900">
             {profile.roles.join(', ') || 'sin roles'}
@@ -33,19 +33,22 @@ export default async function AdminHomePage() {
             href: '/drivers',
             title: 'Repartidores',
             description: 'Revisá solicitudes, documentos y estados de aprobación.',
+            initial: 'R',
           },
           {
             href: '/finance',
             title: 'Finanzas',
             description: 'Regla de comisión, deudas y pagos pendientes.',
+            initial: 'F',
           },
           {
             href: '/system',
             title: 'Sistema',
             description: 'Métricas operativas y estado de producción.',
+            initial: 'S',
           },
         ]}
       />
-    </div>
+    </>
   );
 }

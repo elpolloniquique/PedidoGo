@@ -13,7 +13,7 @@ export type AppShellProps = {
 
 /**
  * Auth / public: una sola composición (marca + título + panel).
- * Panel: cabecera + toolbar + contenido.
+ * Panel: cabecera + nav + contenido con márgenes generosos.
  */
 export function AppShell({
   title,
@@ -48,27 +48,19 @@ export function AppShell({
 
   return (
     <div className="rx-atmosphere">
-      <main className="mx-auto flex w-full max-w-5xl flex-col gap-7 px-5 py-10 sm:px-8 sm:py-12">
-        <header className="space-y-4">
-          <p className="rx-brand-mark text-xl sm:text-2xl">{brandConfig.appShortName}</p>
-          <div className="space-y-1.5">
-            <h1 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
-              {title}
-            </h1>
-            {subtitle ? (
-              <p className="max-w-2xl text-sm text-[var(--color-ink-muted)] sm:text-base">
-                {subtitle}
-              </p>
-            ) : null}
+      <div className="rx-panel-shell">
+        <header className="rx-panel-header">
+          <div className="rx-panel-header__brand">
+            <p className="rx-brand-mark rx-brand-mark--panel">{brandConfig.appShortName}</p>
+            <div className="rx-panel-header__meta">
+              <h1 className="rx-panel-header__title">{title}</h1>
+              {subtitle ? <p className="rx-panel-header__subtitle">{subtitle}</p> : null}
+            </div>
           </div>
-          {toolbar ? (
-            <nav className="flex flex-wrap items-center gap-1.5 border-y border-teal-900/8 py-3">
-              {toolbar}
-            </nav>
-          ) : null}
+          {toolbar ? <nav className="rx-panel-nav">{toolbar}</nav> : null}
         </header>
-        {children}
-      </main>
+        <main className="rx-panel-main">{children}</main>
+      </div>
     </div>
   );
 }

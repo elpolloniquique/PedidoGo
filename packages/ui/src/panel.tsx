@@ -29,26 +29,21 @@ export type HomeAction = {
   href: string;
   title: string;
   description: string;
+  /** Inicial opcional para el badge del card */
+  initial?: string;
 };
 
 export function HomeActionGrid({ actions }: { actions: HomeAction[] }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="rx-action-grid">
       {actions.map((action) => (
-        <a
-          key={action.href}
-          href={action.href}
-          className="group rounded-2xl border border-teal-900/10 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-teal-700/25 hover:bg-white hover:shadow-[0_16px_40px_rgba(11,18,32,0.08)]"
-        >
-          <p className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[var(--color-ink)]">
-            {action.title}
-          </p>
-          <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {action.description}
-          </p>
-          <span className="mt-4 inline-flex text-sm font-semibold text-[var(--color-brand-700)] group-hover:underline">
-            Abrir →
+        <a key={action.href} href={action.href} className="rx-action-card">
+          <span className="rx-action-card__kicker" aria-hidden>
+            {(action.initial ?? action.title).slice(0, 1).toUpperCase()}
           </span>
+          <p className="rx-action-card__title">{action.title}</p>
+          <p className="rx-action-card__desc">{action.description}</p>
+          <span className="rx-action-card__cta">Abrir →</span>
         </a>
       ))}
     </div>
@@ -62,7 +57,7 @@ export function Surface({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={`rx-panel p-6 sm:p-8 ${className}`}>{children}</div>;
+  return <div className={`rx-panel ${className}`.trim()}>{children}</div>;
 }
 
 export function AuthPrimaryButton(props: {
