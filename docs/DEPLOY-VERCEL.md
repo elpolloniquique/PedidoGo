@@ -83,8 +83,24 @@ Admin además: `/system` (métricas de plataforma).
 |----------|----------|
 | Build falla `@RapideX/...` | Root Directory incorrecto |
 | Login no funciona | Redirect URLs en Supabase |
+| “Revisa tu correo para confirmar” | Ver sección **Confirmación de email** abajo |
 | Mapa vacío | Falta `NEXT_PUBLIC_MAPBOX_TOKEN` |
 | Enlace tracking a localhost | `NEXT_PUBLIC_CUSTOMER_TRACKING_URL` en merchant |
+
+### Confirmación de email
+
+Si al registrarte aparece *“Revisa tu correo…”* y no podés entrar:
+
+1. **Supabase → Authentication → Providers → Email** → desactivá **Confirm email** (recomendado en MVP).
+2. Ejecutá `supabase/scripts/confirmar_email_usuarios.sql` para liberar cuentas ya creadas.
+3. En Vercel (driver y merchant) debe existir `SUPABASE_SERVICE_ROLE_KEY`: el registro confirma el correo automáticamente y te deja logueado.
+
+Redirect URLs deben incluir:
+
+```text
+https://pedido-go-driver-pwa.vercel.app/**
+https://pedido-go-merchant-web.vercel.app/**
+```
 
 ## 7. Dominios propios (opcional)
 

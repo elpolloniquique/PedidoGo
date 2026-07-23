@@ -46,39 +46,36 @@ export function RegisterForm({ intendedRole, title }: RegisterFormProps) {
 
     setLoading(true);
     try {
-      const supabase = createClient();
-      const emailRedirectTo = `${window.location.origin}/auth/callback?next=/`;
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(parsed.data),
+      });
+      const payload = (await res.json()) as { ok?: boolean; error?: string; message?: string };
+      if (!res.ok || !payload.ok) {
+        setError(payload.error ?? 'No se pudo crear la cuenta');
+        return;
+      }
 
-      const { data, error: signUpError } = await supabase.auth.signUp({
+      setInfo(payload.message ?? 'Cuenta lista. Ingresando…');
+
+      const supabase = createClient();
+      const { error: signInError } = await supabase.auth.signInWithPassword({
         email: parsed.data.email,
         password: parsed.data.password,
-        options: {
-          emailRedirectTo,
-          data: {
-            first_name: parsed.data.firstName,
-            last_name: parsed.data.lastName,
-            phone: parsed.data.phone || null,
-            intended_role: parsed.data.intendedRole,
-          },
-        },
       });
 
-      if (signUpError) {
-        setError(signUpError.message);
+      if (signInError) {
+        setError(
+          `Cuenta creada, pero no se pudo iniciar sesión: ${signInError.message}. Probá en Iniciar sesión.`,
+        );
         return;
       }
 
-      if (data.session) {
-        router.replace('/');
-        router.refresh();
-        return;
-      }
-
-      setInfo(
-        'Cuenta creada. Revisa tu correo para confirmar el registro y luego inicia sesión.',
-      );
+      router.replace('/');
+      router.refresh();
     } catch {
-      setError('No se pudo completar el registro. Revisa la configuración de Supabase.');
+      setError('No se pudo completar el registro. Revisá la configuración de Supabase.');
     } finally {
       setLoading(false);
     }

@@ -14,6 +14,7 @@ export async function middleware(request: NextRequest) {
       '/sw.js',
       '/icons',
       '/api/health',
+      '/api/auth',
     ],
     requireAuth: true,
     loginPath: '/login',

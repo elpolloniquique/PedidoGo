@@ -12,6 +12,7 @@ export async function middleware(request: NextRequest) {
       '/api/health',
       '/api/cron',
       '/api/v1',
+      '/api/auth',
     ],
     requireAuth: true,
     loginPath: '/login',

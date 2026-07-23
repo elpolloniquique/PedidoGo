@@ -12,6 +12,11 @@ type LoginFormProps = {
   registerHref?: string;
 };
 
+function isEmailNotConfirmed(message: string): boolean {
+  const m = message.toLowerCase();
+  return m.includes('email not confirmed') || m.includes('email_not_confirmed');
+}
+
 export function LoginForm({
   showRegisterLink = false,
   registerHref = '/register',
@@ -39,13 +44,29 @@ export function LoginForm({
     setLoading(true);
     try {
       const supabase = createClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      let { error: signInError } = await supabase.auth.signInWithPassword({
         email: parsed.data.email,
         password: parsed.data.password,
       });
 
+      if (signInError && isEmailNotConfirmed(signInError.message)) {
+        await fetch('/api/auth/confirm-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: parsed.data.email }),
+        });
+        ({ error: signInError } = await supabase.auth.signInWithPassword({
+          email: parsed.data.email,
+          password: parsed.data.password,
+        }));
+      }
+
       if (signInError) {
-        setError('Correo o contraseña incorrectos');
+        setError(
+          isEmailNotConfirmed(signInError.message)
+            ? 'Tu correo aún no está confirmado. Probá de nuevo en unos segundos o contactá soporte.'
+            : 'Correo o contraseña incorrectos',
+        );
         return;
       }
 
