@@ -7,3 +7,12 @@ export {
   type NotificationBellProps,
   type NotificationItem,
 } from './notification-bell';
+export {
+  PanelNav,
+  HomeActionGrid,
+  Surface,
+  AuthPrimaryButton,
+  type NavItem,
+  type PanelNavProps,
+  type HomeAction,
+} from './panel';

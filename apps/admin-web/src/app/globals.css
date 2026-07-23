@@ -8,6 +8,6 @@
 
 body {
   margin: 0;
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
 }

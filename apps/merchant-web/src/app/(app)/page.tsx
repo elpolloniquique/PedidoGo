@@ -1,7 +1,7 @@
 import { requireAppUser } from '@/lib/auth';
 import { listBranches, requireMerchantContext } from '@/lib/merchant';
 import { createClient } from '@/lib/supabase/server';
-import { Alert, Button } from '@pedidosgo/ui';
+import { Alert, HomeActionGrid, Surface } from '@pedidosgo/ui';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
@@ -24,79 +24,89 @@ export default async function MerchantHomePage() {
   const branches = await listBranches(merchant.id);
   const primary = branches[0];
 
+  const actions = [
+    {
+      href: '/orders/new',
+      title: 'Nuevo pedido',
+      description: 'Creá un pedido manual y publicalo a repartidores.',
+    },
+    {
+      href: '/orders',
+      title: 'Pedidos',
+      description: 'Seguí estados, ofertas y el mapa de cada entrega.',
+    },
+    {
+      href: '/branches',
+      title: `Sucursales (${branches.length})`,
+      description: 'Ubicación, horarios y modo de despacho.',
+    },
+    {
+      href: '/merchant',
+      title: 'Datos del comercio',
+      description: 'Nombre, contacto y configuración general.',
+    },
+    {
+      href: '/users',
+      title: 'Usuarios',
+      description: 'Operadores y roles del equipo.',
+    },
+    ...(primary
+      ? [
+          {
+            href: `/branches/${primary.id}/settings`,
+            title: 'Modo despacho',
+            description: 'Ofertas, tarifa fija y radio de búsqueda.',
+          },
+        ]
+      : []),
+  ];
+
   return (
     <div className="space-y-6">
-      <div className="space-y-2 rounded-2xl border border-teal-900/10 bg-white/90 p-6 shadow-sm">
-        <h2 className="text-xl font-semibold text-slate-900">{merchant.name}</h2>
-        <p className="text-sm text-slate-600">
-          Tu rol en el comercio: <strong>{membershipRole}</strong>
+      <Surface>
+        <p className="text-xs font-semibold tracking-[0.16em] text-teal-800 uppercase">
+          Comercio
+        </p>
+        <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-ink)]">
+          {merchant.name}
+        </h2>
+        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+          Rol: <strong>{membershipRole}</strong>
           {merchant.isApproved ? ' · aprobado' : ' · pendiente de aprobación'}
         </p>
-        <Alert variant="info">
-          Crea pedidos manuales, publícalos a repartidores y acepta ofertas. Mapas y GPS llegan en
-          fases 8–9.
-        </Alert>
-      </div>
+        <div className="mt-5">
+          <Alert variant="info">
+            Creá pedidos, aceptá ofertas y compartí el enlace de seguimiento con tus clientes.
+          </Alert>
+        </div>
+      </Surface>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-        <Link href="/orders">
-          <Button variant="secondary" size="lg" className="w-full">
-            Pedidos
-          </Button>
-        </Link>
-        <Link href="/orders/new">
-          <Button size="lg" className="w-full">
-            Nuevo pedido
-          </Button>
-        </Link>
-        <Link href="/merchant">
-          <Button variant="secondary" size="lg" className="w-full">
-            Datos del comercio
-          </Button>
-        </Link>
-        <Link href="/branches">
-          <Button variant="secondary" size="lg" className="w-full">
-            Sucursales ({branches.length})
-          </Button>
-        </Link>
-        {primary ? (
-          <>
-            <Link href={`/branches/${primary.id}/settings`}>
-              <Button variant="secondary" size="lg" className="w-full">
-                Modo despacho
-              </Button>
-            </Link>
-            <Link href={`/branches/${primary.id}/hours`}>
-              <Button variant="secondary" size="lg" className="w-full">
-                Horarios
-              </Button>
-            </Link>
-          </>
-        ) : null}
-        <Link href="/users">
-          <Button variant="secondary" size="lg" className="w-full">
-            Usuarios
-          </Button>
-        </Link>
-      </div>
+      <HomeActionGrid actions={actions} />
 
       {branches.length > 0 ? (
-        <div className="rounded-2xl border border-slate-200 bg-white/90 p-4">
-          <h3 className="mb-3 font-semibold text-slate-900">Sucursales</h3>
-          <ul className="space-y-2 text-sm text-slate-700">
+        <Surface>
+          <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]">
+            Sucursales
+          </h3>
+          <ul className="mt-4 divide-y divide-slate-100">
             {branches.map((b) => (
-              <li key={b.id} className="flex flex-wrap items-center justify-between gap-2">
-                <span>
+              <li key={b.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-sm">
+                <span className="text-[var(--color-ink)]">
                   {b.name}
-                  {!b.isActive ? ' (inactiva)' : ''}
+                  {!b.isActive ? (
+                    <span className="ml-2 text-[var(--color-ink-muted)]">(inactiva)</span>
+                  ) : null}
                 </span>
-                <Link href={`/branches/${b.id}`} className="text-teal-700 underline">
+                <Link
+                  href={`/branches/${b.id}`}
+                  className="font-semibold text-teal-800 underline-offset-2 hover:underline"
+                >
                   Editar
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </Surface>
       ) : null}
     </div>
   );

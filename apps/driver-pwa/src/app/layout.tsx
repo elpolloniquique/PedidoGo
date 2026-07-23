@@ -1,39 +1,23 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
+import { DM_Sans, Syne } from 'next/font/google';
 import { brandConfig } from '@pedidosgo/config';
-import { ServiceWorkerRegister } from '@/components/pwa/service-worker-register';
 import './globals.css';
 
-export const metadata: Metadata = {
-  title: `${brandConfig.appName} — Repartidores`,
-  description: brandConfig.appDescription,
-  manifest: '/manifest.json',
-  applicationName: brandConfig.appShortName,
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: brandConfig.appShortName,
-  },
-  icons: {
-    icon: [
-      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [{ url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  other: {
-    'mobile-web-app-capable': 'yes',
-  },
-};
+const brand = Syne({
+  subsets: ['latin'],
+  variable: '--font-brand',
+  display: 'swap',
+});
 
-export const viewport: Viewport = {
-  themeColor: brandConfig.appPrimaryColor,
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+const body = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: `${brandConfig.appName} — App del Repartidor`,
+  description: brandConfig.appDescription,
 };
 
 export default function RootLayout({
@@ -42,11 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body>
-        <ServiceWorkerRegister />
-        {children}
-      </body>
+    <html lang="es" className={`${brand.variable} ${body.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

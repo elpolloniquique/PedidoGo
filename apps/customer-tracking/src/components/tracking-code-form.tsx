@@ -31,7 +31,7 @@ export function TrackingCodeForm() {
         autoComplete="off"
       />
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
-      <Button type="submit" size="lg">
+      <Button type="submit" size="lg" className="w-full">
         Ver seguimiento
       </Button>
     </form>

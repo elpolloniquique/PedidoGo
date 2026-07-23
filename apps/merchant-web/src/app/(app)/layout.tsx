@@ -2,8 +2,7 @@ import { requireAppUser } from '@/lib/auth';
 import { LogoutButton } from '@/components/auth/logout-button';
 import { AppNotificationBell } from '@/components/notifications/app-notification-bell';
 import { brandConfig } from '@pedidosgo/config';
-import { AppShell, Button } from '@pedidosgo/ui';
-import Link from 'next/link';
+import { AppShell, PanelNav } from '@pedidosgo/ui';
 import type { ReactNode } from 'react';
 
 const NAV = [
@@ -20,20 +19,21 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <AppShell
+      variant="panel"
       title="Panel del Comercio"
       subtitle={`${brandConfig.appName} · ${profile.email ?? profile.id}`}
+      toolbar={
+        <PanelNav
+          items={NAV}
+          trailing={
+            <>
+              <AppNotificationBell />
+              <LogoutButton />
+            </>
+          }
+        />
+      }
     >
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        {NAV.map((item) => (
-          <Link key={item.href} href={item.href}>
-            <Button variant="ghost" size="md">
-              {item.label}
-            </Button>
-          </Link>
-        ))}
-        <AppNotificationBell />
-        <LogoutButton />
-      </div>
       {children}
     </AppShell>
   );

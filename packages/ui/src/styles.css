@@ -1,8 +1,83 @@
-/* Estilos base compartidos del design system PedidosGo */
+/* Design system RapideX / PedidosGo */
 :root {
   --color-brand-600: #0f766e;
+  --color-brand-700: #0d9488;
   --color-brand-800: #115e59;
   --color-brand-900: #134e4a;
   --color-brand-100: #ccfbf1;
   --color-brand-200: #99f6e4;
+  --color-ink: #0b1220;
+  --color-ink-muted: #475569;
+  --rx-radius: 1rem;
+  --rx-shadow: 0 18px 50px rgba(11, 18, 32, 0.08);
+}
+
+.rx-atmosphere {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  color: var(--color-ink);
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(15, 118, 110, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(13, 148, 136, 0.12), transparent 50%),
+    linear-gradient(165deg, #f7faf9 0%, #eef4f2 42%, #e8eef3 100%);
+}
+
+.rx-atmosphere::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(15, 118, 110, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 118, 110, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.rx-brand-mark {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--color-brand-800);
+  animation: rx-rise 500ms ease-out both;
+}
+
+@keyframes rx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rx-panel {
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--rx-shadow);
+  border-radius: 1.25rem;
+  animation: rx-rise 420ms ease-out both;
+}
+
+.rx-nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.rx-nav-link:hover {
+  background: rgba(15, 118, 110, 0.08);
+  color: var(--color-brand-900);
 }

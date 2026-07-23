@@ -1,5 +1,4 @@
-import { Alert, Button } from '@pedidosgo/ui';
-import Link from 'next/link';
+import { Alert, HomeActionGrid, Surface } from '@pedidosgo/ui';
 import {
   getDriverDocuments,
   getDriverVehicles,
@@ -17,8 +16,51 @@ export default async function DriverHomePage() {
   const vehicles = await getDriverVehicles(driver.id);
   const approved = driver.status === 'approved';
 
+  const onboardingActions = [
+    {
+      href: '/onboarding',
+      title: `Datos personales${driver.rut ? ' ✓' : ''}`,
+      description: 'RUT, dirección y contacto de emergencia.',
+    },
+    {
+      href: '/documents',
+      title: `Documentos (${documents.length})`,
+      description: 'Cédula, licencia y antecedentes.',
+    },
+    {
+      href: '/vehicle',
+      title: `Vehículo (${vehicles.length})`,
+      description: 'Tipo, patente y seguro.',
+    },
+    {
+      href: '/application',
+      title: 'Enviar / ver estado',
+      description: 'Mandá tu solicitud o revisá la revisión.',
+    },
+  ];
+
+  const workActions = approved
+    ? [
+        {
+          href: '/jobs',
+          title: 'Pedidos disponibles',
+          description: 'Ofertá tarifas en trabajos abiertos cerca tuyo.',
+        },
+        {
+          href: '/delivery',
+          title: 'Entrega activa',
+          description: 'Avanzá estados, GPS y evidencia fotográfica.',
+        },
+        {
+          href: '/wallet',
+          title: 'Billetera',
+          description: 'Ingresos, comisión y pagos de deuda.',
+        },
+      ]
+    : [];
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <OfflineProfileSync
         driverId={driver.id}
         status={driver.status}
@@ -28,58 +70,32 @@ export default async function DriverHomePage() {
       <OfflineStatusBanner />
       <InstallPrompt driverApproved={approved} driverId={driver.id} />
 
-      <div className="space-y-4 rounded-2xl border border-teal-900/10 bg-white/90 p-6 shadow-sm">
-        <h2 className="text-xl font-semibold text-slate-900">
+      <Surface>
+        <p className="text-xs font-semibold tracking-[0.16em] text-teal-800 uppercase">
+          Repartidor
+        </p>
+        <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-ink)]">
           Hola{profile.firstName ? `, ${profile.firstName}` : ''}
         </h2>
-        <Alert variant={approved ? 'success' : 'info'}>
-          Estado de solicitud:{' '}
-          <strong>{STATUS_LABELS[driver.status] ?? driver.status}</strong>
-        </Alert>
-
-        {approved ? <AvailabilityPanel /> : null}
-
-        <div className="grid gap-3 sm:grid-cols-2">
-          {approved ? (
-            <>
-              <Link href="/jobs">
-                <Button className="w-full" size="lg">
-                  Pedidos disponibles
-                </Button>
-              </Link>
-              <Link href="/delivery">
-                <Button className="w-full" size="lg" variant="secondary">
-                  Mi entrega activa
-                </Button>
-              </Link>
-              <Link href="/wallet">
-                <Button className="w-full" size="lg" variant="secondary">
-                  Billetera
-                </Button>
-              </Link>
-            </>
-          ) : null}
-          <Link href="/onboarding">
-            <Button className="w-full" size="lg" variant="secondary">
-              1. Datos personales {driver.rut ? '✓' : ''}
-            </Button>
-          </Link>
-          <Link href="/documents">
-            <Button className="w-full" size="lg" variant="secondary">
-              2. Documentos ({documents.length})
-            </Button>
-          </Link>
-          <Link href="/vehicle">
-            <Button className="w-full" size="lg" variant="secondary">
-              3. Vehículo ({vehicles.length})
-            </Button>
-          </Link>
-          <Link href="/application">
-            <Button className="w-full" size="lg" variant="secondary">
-              4. Enviar / ver estado
-            </Button>
-          </Link>
+        <div className="mt-4">
+          <Alert variant={approved ? 'success' : 'info'}>
+            Estado de solicitud:{' '}
+            <strong>{STATUS_LABELS[driver.status] ?? driver.status}</strong>
+          </Alert>
         </div>
+        {approved ? (
+          <div className="mt-5">
+            <AvailabilityPanel />
+          </div>
+        ) : null}
+      </Surface>
+
+      {workActions.length > 0 ? <HomeActionGrid actions={workActions} /> : null}
+      <div className="space-y-3">
+        <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-ink)]">
+          Onboarding
+        </h3>
+        <HomeActionGrid actions={onboardingActions} />
       </div>
     </div>
   );

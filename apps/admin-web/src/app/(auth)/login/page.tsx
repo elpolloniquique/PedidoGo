@@ -3,10 +3,17 @@ import { LoginForm } from '@/components/auth/login-form';
 
 export default function LoginPage() {
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold text-slate-900">Panel Superadministrador</h2>
-      <p className="text-sm text-slate-600">
-        Solo cuentas con rol <code>super_admin</code> o <code>platform_admin</code>.
+    <div className="space-y-5">
+      <p className="text-sm leading-relaxed text-[var(--color-ink-muted)]">
+        Solo cuentas con rol{' '}
+        <code className="rounded-md bg-teal-50 px-1.5 py-0.5 text-xs font-semibold text-teal-900">
+          super_admin
+        </code>{' '}
+        o{' '}
+        <code className="rounded-md bg-teal-50 px-1.5 py-0.5 text-xs font-semibold text-teal-900">
+          platform_admin
+        </code>
+        .
       </p>
       <Suspense fallback={<p className="text-sm text-slate-500">Cargando…</p>}>
         <LoginForm showRegisterLink={false} />

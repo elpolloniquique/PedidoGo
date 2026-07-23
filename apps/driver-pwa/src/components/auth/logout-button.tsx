@@ -22,7 +22,7 @@ export function LogoutButton() {
   }
 
   return (
-    <Button type="button" variant="secondary" onClick={onLogout} disabled={loading}>
+    <Button type="button" variant="ghost" onClick={onLogout} disabled={loading}>
       {loading ? 'Cerrando…' : 'Cerrar sesión'}
     </Button>
   );

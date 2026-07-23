@@ -59,7 +59,7 @@ export function LoginForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4">
+    <form onSubmit={onSubmit} className="flex flex-col gap-5">
       {urlError === 'forbidden' ? (
         <Alert variant="error">
           Tu cuenta no tiene permiso para esta aplicación.
@@ -89,8 +89,11 @@ export function LoginForm({
         required
       />
 
-      <div className="flex items-center justify-between text-sm">
-        <Link href="/forgot-password" className="text-teal-700 hover:underline">
+      <div className="-mt-1 flex items-center justify-between text-sm">
+        <Link
+          href="/forgot-password"
+          className="font-medium text-teal-800 underline-offset-2 hover:underline"
+        >
           ¿Olvidaste tu contraseña?
         </Link>
       </div>
@@ -100,9 +103,12 @@ export function LoginForm({
       </Button>
 
       {showRegisterLink ? (
-        <p className="text-center text-sm text-slate-600">
+        <p className="text-center text-sm text-[var(--color-ink-muted)]">
           ¿No tienes cuenta?{' '}
-          <Link href={registerHref} className="font-medium text-teal-700 hover:underline">
+          <Link
+            href={registerHref}
+            className="font-semibold text-teal-800 underline-offset-2 hover:underline"
+          >
             Regístrate
           </Link>
         </p>
