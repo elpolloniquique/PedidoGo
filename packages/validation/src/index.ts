@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-/** Esquemas de validación PedidosGo */
+/** Esquemas de validación RapideX */
 
 export const emailSchema = z.string().trim().email('Correo no válido');
 

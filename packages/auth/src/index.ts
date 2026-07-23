@@ -1,7 +1,7 @@
 import type { UserRole } from '@pedidosgo/types';
 
 /**
- * Autorización PedidosGo.
+ * Autorización RapideX.
  * Nunca confiar solo en el rol enviado por el navegador:
  * los roles se leen desde Supabase (user_roles) vía RPC / RLS.
  */

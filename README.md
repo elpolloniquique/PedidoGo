@@ -1,13 +1,8 @@
-# RapideX / PedidosGo — Plataforma de delivery
+# RapideX — Plataforma de delivery
 
-Monorepo **Turborepo + pnpm** que conecta comercios con repartidores independientes (negociación de tarifas, marca configurable).
+Monorepo **Turborepo + pnpm** para **RapideX**: conecta comercios con repartidores independientes (modelo tipo negociación de tarifas).
 
-> Documentación completa: **[docs/INDEX.md](docs/INDEX.md)**
-
-## Estado
-
-**MVP cerrado (fases 0–16):** código, BD, tests smoke y docs de handoff listos.  
-Pendiente típico del cliente: deploys Vercel + QA en producción.
+> Nota técnica: los paquetes npm siguen el scope `@pedidosgo/*` (compatibilidad del monorepo). La marca visible es **RapideX**.
 
 ## Aplicaciones
 
@@ -20,15 +15,14 @@ Pendiente típico del cliente: deploys Vercel + QA en producción.
 
 ## Paquetes compartidos
 
-- `@pedidosgo/config` — Marca, puertos, cabeceras de seguridad
+- `@pedidosgo/config` — Marca y configuración central (**RapideX**)
 - `@pedidosgo/types` — Tipos TypeScript
-- `@pedidosgo/validation` — Esquemas Zod (+ Vitest)
+- `@pedidosgo/validation` — Esquemas Zod
 - `@pedidosgo/ui` — Componentes UI base
 - `@pedidosgo/supabase` — Clientes Supabase (browser/server)
 - `@pedidosgo/maps` — Mapbox (geocoding, directions, MapView)
 - `@pedidosgo/auth` — Utilidades de roles
 - `@pedidosgo/shared` — Utilidades comunes
-- `@pedidosgo/e2e` — Playwright smoke
 
 ## Requisitos
 
@@ -40,50 +34,31 @@ Pendiente típico del cliente: deploys Vercel + QA en producción.
 ```bash
 pnpm install
 cp .env.example .env.local
-# Completa Supabase + Mapbox en .env.local
-
-pnpm --filter @pedidosgo/merchant-web dev
-# o: pnpm dev  (todas las apps)
+pnpm dev
+# o: pnpm --filter @pedidosgo/admin-web dev
 ```
 
 ## Scripts
 
 ```bash
-pnpm build        # Build de todo el monorepo
-pnpm lint         # ESLint
-pnpm typecheck    # TypeScript
-pnpm test:unit    # Vitest (validation)
-pnpm test:e2e     # Playwright smoke (requiere build o dev)
-pnpm format       # Prettier
+pnpm build
+pnpm lint
+pnpm typecheck
+pnpm format
 ```
-
-## Documentación
-
-| Guía | Archivo |
-|------|---------|
-| Índice | [docs/INDEX.md](docs/INDEX.md) |
-| Arquitectura | [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) |
-| Operación diaria | [docs/OPERACION.md](docs/OPERACION.md) |
-| Deploy Vercel | [docs/DEPLOY-VERCEL.md](docs/DEPLOY-VERCEL.md) |
-| QA manual | [docs/QA-CHECKLIST.md](docs/QA-CHECKLIST.md) |
-| Handoff | [docs/HANDOFF.md](docs/HANDOFF.md) |
-| Cierre fases | [docs/FASE-16.md](docs/FASE-16.md) |
 
 ## Infraestructura
 
 - **Supabase** — Auth, PostgreSQL, PostGIS, Realtime, Storage
-- **Mapbox** — Mapas, rutas, geocodificación
+- **Mapbox** — Mapas y rutas
 - **Vercel** — Despliegue de las 4 apps
-- **GitHub Actions** — CI (typecheck, lint, build, unit, e2e)
+- **GitHub** — https://github.com/elpolloniquique/PedidoGo
 
 ## Fase actual
 
-**Fase 17** — Evidencia fotográfica de entrega.
-
-Ver [docs/FASE-17.md](docs/FASE-17.md).
-
-Anteriores: [docs/FASE-1.md](docs/FASE-1.md) … [docs/FASE-16.md](docs/FASE-16.md).
+Ver `docs/INDEX.md` y la última `docs/FASE-*.md`.
 
 ## Marca
 
-Nombre y colores vía `NEXT_PUBLIC_APP_*` y tabla `app_settings` en Supabase (script `supabase/scripts/actualizar_marca_rapidex.sql`).
+**RapideX** se configura con `NEXT_PUBLIC_APP_*` en `.env.local` y en `app_settings` (Supabase).  
+Si la BD ya tenía PedidosGo, ejecuta: `supabase/scripts/actualizar_marca_rapidex.sql`
