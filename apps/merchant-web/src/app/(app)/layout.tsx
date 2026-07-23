@@ -11,6 +11,8 @@ const NAV = [
   { href: '/merchant', label: 'Comercio' },
   { href: '/branches', label: 'Sucursales' },
   { href: '/users', label: 'Usuarios' },
+  { href: '/webhooks', label: 'Webhooks' },
+  { href: '/support', label: 'Soporte' },
   { href: '/profile', label: 'Perfil' },
 ];
 

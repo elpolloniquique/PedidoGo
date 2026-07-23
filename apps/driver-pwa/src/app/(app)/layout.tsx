@@ -14,6 +14,7 @@ const NAV = [
   { href: '/documents', label: 'Documentos' },
   { href: '/vehicle', label: 'Vehículo' },
   { href: '/application', label: 'Solicitud' },
+  { href: '/support', label: 'Soporte' },
   { href: '/profile', label: 'Perfil' },
 ];
 

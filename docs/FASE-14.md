@@ -1,8 +1,8 @@
-# Fase 14 — Hardening y producción
+﻿# Fase 14 — Hardening y producción
 
 ## Objetivo
 
-Preparar PedidosGo/RapideX para Vercel + Supabase en producción: cabeceras de seguridad, límites de abuso, salud operativa y checklist de despliegue.
+Preparar RapideX/RapideX para Vercel + Supabase en producción: cabeceras de seguridad, límites de abuso, salud operativa y checklist de despliegue.
 
 ## Migración
 
@@ -20,7 +20,7 @@ Preparar PedidosGo/RapideX para Vercel + Supabase en producción: cabeceras de s
 
 | Pieza | Dónde |
 |-------|--------|
-| Cabeceras CSP / X-Frame / etc. | `@pedidosgo/config` → `buildSecurityHeaderRoutes()` en las 4 apps |
+| Cabeceras CSP / X-Frame / etc. | `@RapideX/config` → `buildSecurityHeaderRoutes()` en las 4 apps |
 | `GET /api/health` | Las 4 apps (público, para monitoreo) |
 | Admin `/system` | Panel de salud operativa |
 

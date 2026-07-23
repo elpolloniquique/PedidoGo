@@ -1,4 +1,4 @@
-/** Utilidades PWA PedidosGo (cliente) */
+/** Utilidades PWA RapideX (cliente) */
 
 export const INSTALL_DISMISS_KEY = 'pedidosgo.pwa.installDismissedAt';
 export const INSTALL_DONE_KEY = 'pedidosgo.pwa.installed';

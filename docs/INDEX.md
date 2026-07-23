@@ -1,4 +1,4 @@
-# Índice de documentación — RapideX / PedidosGo
+﻿# Índice de documentación — RapideX
 
 ## Guías operativas (empezar aquí)
 
@@ -33,6 +33,7 @@
 | 15 | [FASE-15.md](./FASE-15.md) | Tests E2E + QA |
 | 16 | [FASE-16.md](./FASE-16.md) | Docs finales / cierre |
 | 17 | [FASE-17.md](./FASE-17.md) | Evidencia fotográfica de entrega |
+| 18 | [FASE-18.md](./FASE-18.md) | Webhooks comercio + tickets soporte |
 
 ## Scripts SQL útiles
 

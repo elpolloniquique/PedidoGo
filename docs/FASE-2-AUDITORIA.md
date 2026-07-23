@@ -1,4 +1,4 @@
-# Auditoría Fase 2 — PedidosGo
+﻿# Auditoría Fase 2 — RapideX
 
 ## Estado detectado (revisión local + tus capturas)
 
@@ -33,7 +33,7 @@ En [Mapbox Account → Access tokens](https://account.mapbox.com/access-tokens/)
 ```bash
 # Detén pnpm dev (Ctrl+C) y vuelve a levantar
 cd C:\Users\tutac\PEDIDOS_GO\PedidoGo
-pnpm --filter @pedidosgo/admin-web dev
+pnpm --filter @RapideX/admin-web dev
 ```
 
 ## Criterio Fase 2 al 100%

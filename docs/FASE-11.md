@@ -1,4 +1,4 @@
-# Fase 11 — Finanzas: comisiones y billetera
+﻿# Fase 11 — Finanzas: comisiones y billetera
 
 ## Objetivo
 

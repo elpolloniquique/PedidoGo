@@ -1,4 +1,4 @@
-# Operación diaria — RapideX / PedidosGo
+﻿# Operación diaria — RapideX
 
 Guía para quien opera la plataforma (admin, soporte técnico, dueño del negocio).
 
@@ -26,7 +26,7 @@ Tracking  http://localhost:3004
 cd PedidoGo
 pnpm install
 cp .env.example .env.local   # completar valores reales
-pnpm --filter @pedidosgo/admin-web dev
+pnpm --filter @RapideX/admin-web dev
 # o pnpm dev para todas
 ```
 

@@ -1,4 +1,4 @@
-# Fase 10 — Supabase Realtime
+﻿# Fase 10 — Supabase Realtime
 
 ## Objetivo
 

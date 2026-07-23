@@ -50,6 +50,16 @@ export default async function MerchantHomePage() {
       title: 'Usuarios',
       description: 'Operadores y roles del equipo.',
     },
+    {
+      href: '/webhooks',
+      title: 'Webhooks',
+      description: 'Notificá eventos de pedidos a tu sistema externo.',
+    },
+    {
+      href: '/support',
+      title: 'Soporte',
+      description: 'Abrí tickets de ayuda con la plataforma.',
+    },
     ...(primary
       ? [
           {

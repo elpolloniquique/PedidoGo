@@ -1,4 +1,4 @@
-# Fase 6 — Comercios, sucursales, horarios y despacho
+﻿# Fase 6 — Comercios, sucursales, horarios y despacho
 
 ## Objetivo
 
@@ -36,7 +36,7 @@ Permitir al comercio gestionar su ficha, sucursales, horarios, usuarios y el mod
 
 ### Validación
 
-Esquemas en `@pedidosgo/validation`: `merchantUpdateSchema`, `branchUpsertSchema`, `branchSettingsSchema`, `branchHoursSchema`, `merchantUserInviteSchema`.
+Esquemas en `@RapideX/validation`: `merchantUpdateSchema`, `branchUpsertSchema`, `branchSettingsSchema`, `branchHoursSchema`, `merchantUserInviteSchema`.
 
 ## Aplicar en Supabase (obligatorio)
 
@@ -69,7 +69,7 @@ Los registros nuevos ya crean comercio automáticamente.
 ## Flujo de prueba
 
 ```bash
-pnpm --filter @pedidosgo/merchant-web dev
+pnpm --filter @RapideX/merchant-web dev
 # http://localhost:3002
 ```
 

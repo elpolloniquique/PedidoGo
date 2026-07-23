@@ -1,4 +1,4 @@
-# Fase 13 — Notificaciones in-app + ratings
+﻿# Fase 13 — Notificaciones in-app + ratings
 
 ## Objetivo
 

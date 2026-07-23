@@ -1,6 +1,6 @@
-# Handoff — Entrega del proyecto
+﻿# Handoff — Entrega del proyecto
 
-Documento para transferir RapideX / PedidosGo a otro desarrollador u operador.
+Documento para transferir RapideX a otro desarrollador u operador.
 
 ## Repositorio
 
@@ -85,7 +85,7 @@ pnpm typecheck
 pnpm test:unit
 pnpm build
 pnpm test:e2e
-pnpm --filter @pedidosgo/merchant-web dev
+pnpm --filter @RapideX/merchant-web dev
 ```
 
 ## Documentación clave

@@ -1,4 +1,4 @@
-# Fase 15 — Pruebas E2E + QA manual
+﻿# Fase 15 — Pruebas E2E + QA manual
 
 ## Objetivo
 

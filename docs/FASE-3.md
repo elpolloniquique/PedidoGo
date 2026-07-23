@@ -1,4 +1,4 @@
-# Fase 3 — Autenticación (PedidosGo)
+﻿# Fase 3 — Autenticación (RapideX)
 
 ## Objetivo
 
@@ -9,9 +9,9 @@ Registro, login, recuperación de contraseña, sesiones con cookies, perfiles, r
 | Pieza | Detalle |
 |-------|---------|
 | Migración `20260721000011_auth_fase3.sql` | Trigger de registro con rol seguro + `get_my_roles` / `get_my_profile` |
-| `@pedidosgo/validation` | login, register, forgot/update password, profile |
-| `@pedidosgo/auth` | roles por app (`APP_ALLOWED_ROLES`) |
-| `@pedidosgo/supabase` | `updateSession` para middleware |
+| `@RapideX/validation` | login, register, forgot/update password, profile |
+| `@RapideX/auth` | roles por app (`APP_ALLOWED_ROLES`) |
+| `@RapideX/supabase` | `updateSession` para middleware |
 | `admin-web` | Login, recuperación, dashboard y perfil (sin registro público) |
 | `merchant-web` | Login + registro `merchant_owner` + panel |
 | `driver-pwa` | Login + registro `driver` + panel |
@@ -71,9 +71,9 @@ Project Settings → Authentication → URL Configuration:
 
 ```bash
 cd C:\Users\tutac\PEDIDOS_GO\PedidoGo
-pnpm --filter @pedidosgo/admin-web dev
-pnpm --filter @pedidosgo/merchant-web dev
-pnpm --filter @pedidosgo/driver-pwa dev
+pnpm --filter @RapideX/admin-web dev
+pnpm --filter @RapideX/merchant-web dev
+pnpm --filter @RapideX/driver-pwa dev
 ```
 
 | Prueba | URL |

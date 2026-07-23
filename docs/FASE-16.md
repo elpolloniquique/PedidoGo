@@ -1,4 +1,4 @@
-# Fase 16 — Documentación final y cierre
+﻿# Fase 16 — Documentación final y cierre
 
 ## Objetivo
 

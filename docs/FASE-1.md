@@ -1,4 +1,4 @@
-# Fase 1 — Monorepo PedidosGo
+﻿# Fase 1 — Monorepo RapideX
 
 ## Objetivo
 
@@ -9,7 +9,7 @@ Crear la base del monorepo con Turborepo, pnpm, TypeScript estricto, cuatro apli
 - `pnpm install` sin errores
 - `pnpm build` compila las 4 apps
 - Cada app arranca en su puerto (3001–3004)
-- Marca centralizada en `@pedidosgo/config`
+- Marca centralizada en `@RapideX/config`
 
 ## Estructura creada
 
@@ -50,10 +50,10 @@ PedidoGo/
 - [ ] `pnpm install`
 - [ ] `pnpm typecheck`
 - [ ] `pnpm build`
-- [ ] `pnpm --filter @pedidosgo/admin-web dev` → http://localhost:3001
-- [ ] `pnpm --filter @pedidosgo/merchant-web dev` → http://localhost:3002
-- [ ] `pnpm --filter @pedidosgo/driver-pwa dev` → http://localhost:3003
-- [ ] `pnpm --filter @pedidosgo/customer-tracking dev` → http://localhost:3004
+- [ ] `pnpm --filter @RapideX/admin-web dev` → http://localhost:3001
+- [ ] `pnpm --filter @RapideX/merchant-web dev` → http://localhost:3002
+- [ ] `pnpm --filter @RapideX/driver-pwa dev` → http://localhost:3003
+- [ ] `pnpm --filter @RapideX/customer-tracking dev` → http://localhost:3004
 
 ## Próxima fase
 

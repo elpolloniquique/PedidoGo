@@ -1,4 +1,4 @@
-# Fase 17 — Evidencia fotográfica de entrega
+﻿# Fase 17 — Evidencia fotográfica de entrega
 
 ## Objetivo
 
@@ -49,4 +49,4 @@ Verifica: `supabase/scripts/verificar_fase17.sql`
 
 ## Próxima fase
 
-**Fase 18** — Paneles / webhooks / soporte (post-MVP), o hardening adicional según prioridad.
+**Fase 18** — Webhooks de comercio + tickets de soporte (ver `FASE-18.md`).

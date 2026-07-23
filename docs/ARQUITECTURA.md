@@ -1,4 +1,4 @@
-# Arquitectura — RapideX / PedidosGo
+﻿# Arquitectura — RapideX
 
 ## Visión
 

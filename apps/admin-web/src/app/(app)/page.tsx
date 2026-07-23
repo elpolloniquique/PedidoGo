@@ -47,6 +47,12 @@ export default async function AdminHomePage() {
             description: 'Métricas operativas y estado de producción.',
             initial: 'S',
           },
+          {
+            href: '/support',
+            title: 'Soporte',
+            description: 'Tickets de ayuda de comercios y repartidores.',
+            initial: 'T',
+          },
         ]}
       />
     </>

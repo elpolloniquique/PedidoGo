@@ -1,4 +1,4 @@
-# Fase 5 — PWA instalable (driver-pwa)
+﻿# Fase 5 — PWA instalable (driver-pwa)
 
 ## Objetivo
 
@@ -32,7 +32,7 @@ Solo si:
 Si hay SW nuevo:
 
 - Muestra “Hay una nueva versión disponible”
-- **No** fuerza update si `localStorage` tiene `pedidosgo.pwa.activeDelivery=1`
+- **No** fuerza update si `localStorage` tiene `RapideX.pwa.activeDelivery=1`
   (reservado para pedidos activos en fases posteriores)
 
 ## Offline limitado
@@ -52,7 +52,7 @@ Con la app abierta: Realtime (Fase 10). Al reabrir: sincronizar pendientes.
 ## Cómo probar
 
 ```bash
-pnpm --filter @pedidosgo/driver-pwa dev
+pnpm --filter @RapideX/driver-pwa dev
 # Abrir http://localhost:3003
 ```
 

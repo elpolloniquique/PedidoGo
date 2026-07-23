@@ -1,4 +1,4 @@
-# Fase 2 — Supabase (PedidosGo)
+﻿# Fase 2 — Supabase (RapideX)
 
 ## Objetivo
 
@@ -78,7 +78,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ...   # Solo servidor / Edge Functions
 ## Seed incluido
 
 - Roles y permisos base
-- Configuración de marca **PedidosGo**
+- Configuración de marca **RapideX**
 - Comisión 0.5%
 - Comercio semilla **Pollería El Pollón** (sucursal principal)
 

@@ -1,4 +1,4 @@
-# Checklist QA manual — RapideX / PedidosGo
+﻿# Checklist QA manual — RapideX
 
 Marca cada ítem al probarlo en **local** o **Vercel**.  
 Usa dos navegadores o ventana normal + incógnito para merchant y driver.

@@ -1,24 +1,21 @@
--- RapideX: actualizar marca en BD ya existente (ejecutar en SQL Editor)
-UPDATE public.app_settings SET value = '"RapideX"'::JSONB, updated_at = NOW()
-WHERE key = 'app_name';
--- Si value se guarda como texto plano JSON string:
-UPDATE public.app_settings
-SET value = to_jsonb('RapideX'::TEXT), updated_at = NOW()
-WHERE key IN ('app_name', 'app_short_name');
+-- RapideX: actualizar marca en BD ya sembrada (SQL Editor de Supabase)
 
 UPDATE public.app_settings
-SET value = to_jsonb('soporte@rapidex.cl'::TEXT), updated_at = NOW()
-WHERE key = 'app_support_email';
-
-UPDATE public.app_settings
-SET value = to_jsonb('rapidex.cl'::TEXT), updated_at = NOW()
-WHERE key = 'app_domain';
+SET value = CASE key
+  WHEN 'app_name' THEN 'RapideX'
+  WHEN 'app_short_name' THEN 'RapideX'
+  WHEN 'app_support_email' THEN 'soporte@rapidex.cl'
+  WHEN 'app_domain' THEN 'rapidex.cl'
+  ELSE value
+END,
+updated_at = NOW()
+WHERE key IN ('app_name', 'app_short_name', 'app_support_email', 'app_domain');
 
 UPDATE public.commission_rules
 SET name = 'Comisión estándar RapideX'
 WHERE name = 'Comisión estándar PedidosGo';
 
--- Mensaje de aprobación driver
+-- Mensaje de notificación de aprobación (si Fase 13 ya estaba aplicada)
 CREATE OR REPLACE FUNCTION public.trg_notify_driver_status()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -52,6 +49,7 @@ BEGIN
 END;
 $$;
 
-SELECT key, value FROM public.app_settings
-WHERE key IN ('app_name', 'app_short_name', 'app_support_email', 'app_domain')
+SELECT key, value
+FROM public.app_settings
+WHERE key IN ('app_name', 'app_short_name', 'app_domain', 'app_support_email')
 ORDER BY 1;

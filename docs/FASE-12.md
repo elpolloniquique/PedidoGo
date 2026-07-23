@@ -1,4 +1,4 @@
-# Fase 12 — Seguimiento público del cliente
+﻿# Fase 12 — Seguimiento público del cliente
 
 ## Objetivo
 
@@ -67,7 +67,7 @@ O: `supabase/scripts/verificar_fase12.sql`
 - [ ] `/t/[token]` muestra mapa + PIN
 - [ ] Merchant puede copiar el enlace
 - [ ] No se muestra `pickup_code` al cliente
-- [ ] `pnpm --filter @pedidosgo/customer-tracking typecheck` OK
+- [ ] `pnpm --filter @RapideX/customer-tracking typecheck` OK
 
 ## Próxima fase
 

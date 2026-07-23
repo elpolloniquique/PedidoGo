@@ -1,4 +1,4 @@
-# Fase 8 — Mapbox (mapas, geocodificación, rutas)
+﻿# Fase 8 — Mapbox (mapas, geocodificación, rutas)
 
 ## Objetivo
 
@@ -6,7 +6,7 @@ Integrar Mapbox GL JS en el monorepo: buscar direcciones, mostrar mapas, calcula
 
 ## Qué se implementó
 
-### Paquete `@pedidosgo/maps`
+### Paquete `@RapideX/maps`
 
 | API | Función |
 |-----|---------|

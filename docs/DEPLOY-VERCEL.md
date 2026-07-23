@@ -1,4 +1,4 @@
-# Despliegue en Vercel — PedidosGo / RapideX
+﻿# Despliegue en Vercel — RapideX
 
 Guía para principiantes. Un repo, **cuatro proyectos** en Vercel.
 
@@ -12,10 +12,10 @@ En [vercel.com](https://vercel.com) → **Add New → Project** → importa **Pe
 
 | Proyecto Vercel | Root Directory |
 |-----------------|----------------|
-| `pedidosgo-admin` | `apps/admin-web` |
-| `pedidosgo-merchant` | `apps/merchant-web` |
-| `pedidosgo-driver` | `apps/driver-pwa` |
-| `pedidosgo-tracking` | `apps/customer-tracking` |
+| `RapideX-admin` | `apps/admin-web` |
+| `RapideX-merchant` | `apps/merchant-web` |
+| `RapideX-driver` | `apps/driver-pwa` |
+| `RapideX-tracking` | `apps/customer-tracking` |
 
 - Framework: **Next.js**
 - Build: por defecto (`pnpm build` desde la raíz del monorepo)
@@ -80,7 +80,7 @@ Admin además: `/system` (métricas de plataforma).
 
 | Problema | Solución |
 |----------|----------|
-| Build falla `@pedidosgo/...` | Root Directory incorrecto |
+| Build falla `@RapideX/...` | Root Directory incorrecto |
 | Login no funciona | Redirect URLs en Supabase |
 | Mapa vacío | Falta `NEXT_PUBLIC_MAPBOX_TOKEN` |
 | Enlace tracking a localhost | `NEXT_PUBLIC_CUSTOMER_TRACKING_URL` en merchant |

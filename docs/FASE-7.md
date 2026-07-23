@@ -1,4 +1,4 @@
-# Fase 7 — Pedidos, estados y ofertas
+﻿# Fase 7 — Pedidos, estados y ofertas
 
 ## Objetivo
 
