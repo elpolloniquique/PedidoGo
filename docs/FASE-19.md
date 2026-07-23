@@ -63,3 +63,7 @@ Verificá: `supabase/scripts/verificar_fase19.sql`
 - [ ] Merchant ve métricas en inicio
 - [ ] `CRON_SECRET` en Vercel merchant
 - [ ] Cron o curl despacha webhooks pendientes
+
+## Próxima fase
+
+**Fase 20** — Operación avanzada: flags, auditoría, errores, dominios/backups (`FASE-20.md`).

@@ -11,6 +11,7 @@ const NAV = [
   { href: '/drivers', label: 'Repartidores' },
   { href: '/finance', label: 'Finanzas' },
   { href: '/system', label: 'Sistema' },
+  { href: '/ops', label: 'Operaciones' },
   { href: '/support', label: 'Soporte' },
   { href: '/profile', label: 'Perfil' },
 ];

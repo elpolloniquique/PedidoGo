@@ -54,6 +54,12 @@ export default async function AdminHomePage() {
             initial: 'S',
           },
           {
+            href: '/ops',
+            title: 'Operaciones',
+            description: 'Flags, auditoría, settings y errores de sistema.',
+            initial: 'O',
+          },
+          {
             href: '/support',
             title: 'Soporte',
             description: 'Tickets de ayuda de comercios y repartidores.',

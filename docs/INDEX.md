@@ -12,6 +12,8 @@
 | [HANDOFF.md](./HANDOFF.md) | Entrega del proyecto a otro equipo |
 | [FASE-16.md](./FASE-16.md) | Cierre del roadmap de fases |
 | [manuals/](./manuals/) | Manuales por rol (Fase 19) |
+| [DOMINIOS.md](./DOMINIOS.md) | Dominios propios (Fase 20) |
+| [BACKUPS.md](./BACKUPS.md) | Backups y recuperación (Fase 20) |
 
 ## Fases de desarrollo (historial)
 
@@ -36,6 +38,7 @@
 | 17 | [FASE-17.md](./FASE-17.md) | Evidencia fotográfica de entrega |
 | 18 | [FASE-18.md](./FASE-18.md) | Webhooks comercio + tickets soporte |
 | 19 | [FASE-19.md](./FASE-19.md) | Dashboards, cron webhooks, manuales |
+| 20 | [FASE-20.md](./FASE-20.md) | Ops: flags, auditoría, errores, dominios/backups |
 
 ## Scripts SQL útiles
 
