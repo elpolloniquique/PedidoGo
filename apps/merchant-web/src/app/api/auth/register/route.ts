@@ -4,6 +4,7 @@ import {
   createServiceRoleClient,
   findAuthUserByEmail,
 } from '@/lib/supabase/auth-admin';
+import { ensureMerchantBootstrap } from '@/lib/supabase/ensure-merchant';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -31,7 +32,14 @@ export async function POST(request: Request) {
       intended_role: parsed.data.intendedRole,
     };
 
-    const { error: createError } = await admin.auth.admin.createUser({
+    const bootstrapMeta = {
+      email: parsed.data.email,
+      first_name: parsed.data.firstName,
+      last_name: parsed.data.lastName,
+      phone: parsed.data.phone || null,
+    };
+
+    const { data: created, error: createError } = await admin.auth.admin.createUser({
       email: parsed.data.email,
       password: parsed.data.password,
       email_confirm: true,
@@ -50,7 +58,11 @@ export async function POST(request: Request) {
       const existing = await findAuthUserByEmail(admin, parsed.data.email);
       if (!existing) {
         return NextResponse.json(
-          { ok: false, error: 'El correo ya está registrado. Iniciá sesión.' },
+          {
+            ok: false,
+            error:
+              'Este correo ya está registrado. Iniciá sesión o usá otro correo para el comercio.',
+          },
           { status: 409 },
         );
       }
@@ -58,20 +70,32 @@ export async function POST(request: Request) {
       const { error: updateError } = await admin.auth.admin.updateUserById(existing.id, {
         password: parsed.data.password,
         email_confirm: true,
-        user_metadata: meta,
+        user_metadata: {
+          ...meta,
+          // conservar nombre si ya existía
+          first_name: parsed.data.firstName || existing.user_metadata?.first_name,
+          last_name: parsed.data.lastName || existing.user_metadata?.last_name,
+        },
       });
       if (updateError) {
         return NextResponse.json({ ok: false, error: updateError.message }, { status: 400 });
       }
 
+      await ensureMerchantBootstrap(admin, existing.id, bootstrapMeta);
+
       return NextResponse.json({
         ok: true,
         recovered: true,
-        message: 'Cuenta activada. Iniciando sesión…',
+        message: 'Cuenta de comercio lista. Iniciando sesión…',
       });
     }
 
-    return NextResponse.json({ ok: true, message: 'Cuenta creada.' });
+    const userId = created.user?.id;
+    if (userId) {
+      await ensureMerchantBootstrap(admin, userId, bootstrapMeta);
+    }
+
+    return NextResponse.json({ ok: true, message: 'Cuenta de comercio creada.' });
   } catch (e) {
     const message =
       e instanceof Error ? e.message : 'No se pudo registrar. Revisá SUPABASE_SERVICE_ROLE_KEY.';
