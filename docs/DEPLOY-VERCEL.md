@@ -91,9 +91,11 @@ Admin además: `/system` (métricas de plataforma).
 
 Si al registrarte aparece *“Revisa tu correo…”* y no podés entrar:
 
-1. **Supabase → Authentication → Providers → Email** → desactivá **Confirm email** (recomendado en MVP).
-2. Ejecutá `supabase/scripts/confirmar_email_usuarios.sql` para liberar cuentas ya creadas.
-3. En Vercel (driver y merchant) debe existir `SUPABASE_SERVICE_ROLE_KEY`: el registro confirma el correo automáticamente y te deja logueado.
+1. **Supabase → Authentication → Providers → Email** → desactivá **Confirm email** (obligatorio para MVP; aplica a **cualquier** correo).
+2. Ejecutá `supabase/scripts/confirmar_todos_emails_pendientes.sql` para liberar cuentas ya creadas.
+3. Para un comercio específico: `supabase/scripts/activar_comercio_por_email.sql` (cambiás el email).
+4. En Vercel (**driver y merchant**) debe existir `SUPABASE_SERVICE_ROLE_KEY`.
+5. **Importante:** el proyecto merchant debe estar conectado a GitHub y redesplegarse. Si solo ves el mensaje viejo de “Revisa tu correo”, en Vercel → proyecto merchant → **Deployments → Redeploy** (Root Directory = `apps/merchant-web`).
 
 Redirect URLs deben incluir:
 

@@ -60,14 +60,26 @@ export function RegisterForm({ intendedRole, title }: RegisterFormProps) {
       setInfo(payload.message ?? 'Cuenta lista. Ingresando…');
 
       const supabase = createClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      let { error: signInError } = await supabase.auth.signInWithPassword({
         email: parsed.data.email,
         password: parsed.data.password,
       });
 
       if (signInError) {
+        await fetch('/api/auth/confirm-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: parsed.data.email }),
+        });
+        ({ error: signInError } = await supabase.auth.signInWithPassword({
+          email: parsed.data.email,
+          password: parsed.data.password,
+        }));
+      }
+
+      if (signInError) {
         setError(
-          `Cuenta creada, pero no se pudo iniciar sesión: ${signInError.message}. Probá en Iniciar sesión.`,
+          `Cuenta creada, pero no se pudo iniciar sesión: ${signInError.message}. Andá a Iniciar sesión.`,
         );
         return;
       }
@@ -75,7 +87,9 @@ export function RegisterForm({ intendedRole, title }: RegisterFormProps) {
       router.replace('/');
       router.refresh();
     } catch {
-      setError('No se pudo completar el registro. Revisá la configuración de Supabase.');
+      setError(
+        'No se pudo completar el registro. En Vercel del merchant debe existir SUPABASE_SERVICE_ROLE_KEY y hay que redesplegar.',
+      );
     } finally {
       setLoading(false);
     }
