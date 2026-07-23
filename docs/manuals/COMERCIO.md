@@ -17,9 +17,17 @@ App: **merchant-web**
 | `/orders` | Pedidos y seguimiento |
 | `/orders/new` | Alta manual |
 | `/branches` | Sucursales y horario |
-| `/webhooks` | Integración HTTP |
+| `/webhooks` | Integración HTTP (eventos) |
+| `/api-keys` | API keys Bearer `rx_…` |
 | `/support` | Ayuda con la plataforma |
 | `/users` | Equipo del comercio |
+| `/profile` | Datos + preferencias de notificación |
+
+## API keys
+
+1. Ir a `/api-keys` (owner/admin)
+2. Generar key y **copiarla al momento** (no se vuelve a mostrar)
+3. Llamar `GET /api/v1/orders` con `Authorization: Bearer rx_…`
 
 ## Webhooks
 

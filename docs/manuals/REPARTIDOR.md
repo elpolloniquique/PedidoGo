@@ -18,7 +18,8 @@ App: **driver-pwa** (móvil / PWA)
 3. Ver pedidos en `/jobs` y ofertar
 4. Gestionar entrega en `/delivery` (estados + evidencia foto)
 5. Revisar billetera `/wallet`
-6. Soporte en `/support` si hay incidencias
+6. Preferencias de notificación en `/profile`
+7. Soporte en `/support` si hay incidencias
 
 ## Evidencia fotográfica
 

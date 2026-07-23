@@ -51,6 +51,6 @@ Verificar: `supabase/scripts/verificar_fase20.sql`
 - [ ] Settings editables
 - [ ] Errores visibles (si hay reportes)
 
-## Cierre del roadmap extendido
+## Siguiente
 
-Con Fase 20 el MVP + post-MVP operativo queda cubierto. Mejoras futuras opcionales: Sentry, Edge Functions dedicadas, BI externo, multi-tenant avanzado.
+Continúa en [FASE-21.md](./FASE-21.md) (API keys, preferencias de notificación, reportes CSV).

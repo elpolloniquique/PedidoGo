@@ -60,6 +60,11 @@ export default async function MerchantHomePage() {
       description: 'Notificá eventos de pedidos a tu sistema externo.',
     },
     {
+      href: '/api-keys',
+      title: 'API keys',
+      description: 'Integrá tu sistema con Bearer rx_…',
+    },
+    {
       href: '/support',
       title: 'Soporte',
       description: 'Abrí tickets de ayuda con la plataforma.',

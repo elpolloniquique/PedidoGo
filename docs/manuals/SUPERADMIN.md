@@ -14,8 +14,10 @@ Solo roles `super_admin` o `platform_admin`.
 | `/drivers` | Revisar y aprobar solicitudes |
 | `/finance` | Comisión y pagos de deuda |
 | `/system` | Salud de plataforma |
+| `/ops` | Flags, auditoría, settings |
+| `/reports` | Export CSV pedidos / repartidores / pagos |
 | `/support` | Tickets de toda la red |
-| `/profile` | Datos de cuenta |
+| `/profile` | Datos + preferencias de notificación |
 
 ## Flujo típico
 

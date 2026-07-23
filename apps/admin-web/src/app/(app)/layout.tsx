@@ -12,6 +12,7 @@ const NAV = [
   { href: '/finance', label: 'Finanzas' },
   { href: '/system', label: 'Sistema' },
   { href: '/ops', label: 'Operaciones' },
+  { href: '/reports', label: 'Reportes' },
   { href: '/support', label: 'Soporte' },
   { href: '/profile', label: 'Perfil' },
 ];

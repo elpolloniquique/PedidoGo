@@ -39,6 +39,7 @@
 | 18 | [FASE-18.md](./FASE-18.md) | Webhooks comercio + tickets soporte |
 | 19 | [FASE-19.md](./FASE-19.md) | Dashboards, cron webhooks, manuales |
 | 20 | [FASE-20.md](./FASE-20.md) | Ops: flags, auditoría, errores, dominios/backups |
+| 21 | [FASE-21.md](./FASE-21.md) | API keys comercio, preferencias notif, reportes CSV |
 
 ## Scripts SQL útiles
 

@@ -12,6 +12,7 @@ const NAV = [
   { href: '/branches', label: 'Sucursales' },
   { href: '/users', label: 'Usuarios' },
   { href: '/webhooks', label: 'Webhooks' },
+  { href: '/api-keys', label: 'API keys' },
   { href: '/support', label: 'Soporte' },
   { href: '/profile', label: 'Perfil' },
 ];

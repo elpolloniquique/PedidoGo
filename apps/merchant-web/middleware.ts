@@ -10,6 +10,8 @@ export async function middleware(request: NextRequest) {
       '/update-password',
       '/auth',
       '/api/health',
+      '/api/cron',
+      '/api/v1',
     ],
     requireAuth: true,
     loginPath: '/login',

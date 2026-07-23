@@ -60,6 +60,12 @@ export default async function AdminHomePage() {
             initial: 'O',
           },
           {
+            href: '/reports',
+            title: 'Reportes',
+            description: 'Exportá CSV de pedidos, repartidores y pagos.',
+            initial: 'C',
+          },
+          {
             href: '/support',
             title: 'Soporte',
             description: 'Tickets de ayuda de comercios y repartidores.',
