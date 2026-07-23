@@ -45,8 +45,11 @@ MAPBOX_SECRET_TOKEN
 
 ```text
 NEXT_PUBLIC_CUSTOMER_TRACKING_URL=https://TU-tracking.vercel.app
-CRON_SECRET=un_secreto_largo   # Fase 19: cron /api/cron/dispatch-webhooks
+CRON_SECRET=un_secreto_largo   # despacho webhooks (también en GitHub Secrets)
 ```
+
+> No uses `crons` cada 5 min en `vercel.json` en plan Hobby: **rompe el deploy**.  
+> Usá el workflow `dispatch-webhooks.yml` + secret `CRON_SECRET`.
 
 ## 3. Supabase — Redirect URLs
 

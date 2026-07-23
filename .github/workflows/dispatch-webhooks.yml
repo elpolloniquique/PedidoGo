@@ -1,0 +1,26 @@
+# Despacha webhooks pendientes del merchant.
+# Hobby de Vercel no permite cron cada 5 min en vercel.json (rompe el deploy).
+name: Dispatch merchant webhooks
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call merchant cron endpoint
+        env:
+          MERCHANT_URL: https://pedido-go-merchant-web.vercel.app
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "CRON_SECRET no configurado en GitHub Secrets — se omite el despacho."
+            exit 0
+          fi
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            "${MERCHANT_URL}/api/cron/dispatch-webhooks"
+          echo "OK"

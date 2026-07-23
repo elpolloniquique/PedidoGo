@@ -27,9 +27,13 @@
 
 Ruta: `merchant-web` → `GET/POST /api/cron/dispatch-webhooks`
 
+> **Nota Hobby Vercel:** no se puede usar `crons` cada 5 min en `vercel.json` (rompe el deploy).  
+> El despacho periódico va por **GitHub Actions** (`.github/workflows/dispatch-webhooks.yml`).
+
 1. En Vercel (proyecto merchant) agregá `CRON_SECRET`
-2. `vercel.json` agenda cada 5 minutos
-3. Auth: `Authorization: Bearer <CRON_SECRET>`
+2. En GitHub → Settings → Secrets → `CRON_SECRET` (mismo valor)
+3. Opcional: Variable `MERCHANT_WEB_URL` si la URL no es la default
+4. Auth del endpoint: `Authorization: Bearer <CRON_SECRET>`
 
 Prueba manual:
 
