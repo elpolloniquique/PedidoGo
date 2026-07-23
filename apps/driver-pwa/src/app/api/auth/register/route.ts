@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { registerSchema } from '@pedidosgo/validation';
 import {
-  confirmAuthUserEmail,
   createServiceRoleClient,
   findAuthUserByEmail,
 } from '@/lib/supabase/auth-admin';
+import { ensureDriverBootstrap } from '@/lib/supabase/ensure-driver';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -32,7 +32,9 @@ export async function POST(request: Request) {
       intended_role: parsed.data.intendedRole,
     };
 
-    const { error: createError } = await admin.auth.admin.createUser({
+    let userId: string | null = null;
+
+    const { data: created, error: createError } = await admin.auth.admin.createUser({
       email: parsed.data.email,
       password: parsed.data.password,
       email_confirm: true,
@@ -65,10 +67,29 @@ export async function POST(request: Request) {
         return NextResponse.json({ ok: false, error: updateError.message }, { status: 400 });
       }
 
+      userId = existing.id;
+      await ensureDriverBootstrap(admin, userId, {
+        email: parsed.data.email,
+        first_name: parsed.data.firstName,
+        last_name: parsed.data.lastName,
+        phone: parsed.data.phone || null,
+      });
+
       return NextResponse.json({
         ok: true,
         recovered: true,
         message: 'Cuenta activada. Iniciando sesión…',
+      });
+    }
+
+    userId = created.user?.id ?? null;
+    if (userId) {
+      // Por si el trigger no alcanzó a asignar el rol (o metadata incompleta)
+      await ensureDriverBootstrap(admin, userId, {
+        email: parsed.data.email,
+        first_name: parsed.data.firstName,
+        last_name: parsed.data.lastName,
+        phone: parsed.data.phone || null,
       });
     }
 
