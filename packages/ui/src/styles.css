@@ -9,7 +9,28 @@
   --color-ink: #0b1220;
   --color-ink-muted: #475569;
   --rx-radius: 1rem;
-  --rx-shadow: 0 18px 50px rgba(11, 18, 32, 0.08);
+  --rx-shadow: 0 24px 60px rgba(11, 18, 32, 0.1);
+}
+
+@keyframes rx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rx-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 
 .rx-atmosphere {
@@ -18,9 +39,10 @@
   min-height: 100dvh;
   color: var(--color-ink);
   background:
-    radial-gradient(1200px 600px at 12% -10%, rgba(15, 118, 110, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(13, 148, 136, 0.12), transparent 50%),
-    linear-gradient(165deg, #f7faf9 0%, #eef4f2 42%, #e8eef3 100%);
+    radial-gradient(1100px 520px at 8% -8%, rgba(15, 118, 110, 0.2), transparent 58%),
+    radial-gradient(900px 480px at 100% 0%, rgba(13, 148, 136, 0.14), transparent 52%),
+    radial-gradient(700px 400px at 50% 110%, rgba(15, 118, 110, 0.08), transparent 55%),
+    linear-gradient(165deg, #f6faf9 0%, #eef3f1 45%, #e7eef2 100%);
 }
 
 .rx-atmosphere::before {
@@ -29,36 +51,102 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: 0.35;
+  opacity: 0.28;
   background-image:
-    linear-gradient(rgba(15, 118, 110, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 118, 110, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    linear-gradient(rgba(15, 118, 110, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 118, 110, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 25%, transparent 72%);
+}
+
+.rx-atmosphere--auth::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  z-index: -1;
+  width: min(720px, 90vw);
+  height: 360px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(15, 118, 110, 0.16), transparent 70%);
+  animation: rx-glow 7s ease-in-out infinite;
 }
 
 .rx-brand-mark {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
   color: var(--color-brand-800);
-  animation: rx-rise 500ms ease-out both;
+  animation: rx-rise 520ms ease-out both;
 }
 
-@keyframes rx-rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.rx-brand-mark--hero {
+  font-size: clamp(2.4rem, 6vw, 3.35rem);
+  line-height: 1;
+}
+
+/* ——— Auth / public entry ——— */
+.rx-auth-stage {
+  display: flex;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.rx-auth-card {
+  width: 100%;
+  max-width: 26.5rem;
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--rx-shadow);
+  border-radius: 1.5rem;
+  padding: 2rem 1.6rem 1.75rem;
+  animation: rx-rise 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rx-auth-card--wide {
+  max-width: 36rem;
+}
+
+@media (min-width: 480px) {
+  .rx-auth-card {
+    padding: 2.35rem 2.15rem 2rem;
   }
 }
 
+.rx-auth-card__header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.rx-auth-card__title {
+  margin-top: 0.85rem;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+
+.rx-auth-card__subtitle {
+  margin: 0.55rem auto 0;
+  max-width: 22rem;
+  font-size: 0.925rem;
+  line-height: 1.55;
+  color: var(--color-ink-muted);
+}
+
+.rx-auth-card__body {
+  text-align: left;
+}
+
+/* ——— Panel surfaces ——— */
 .rx-panel {
   border: 1px solid rgba(15, 118, 110, 0.12);
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   box-shadow: var(--rx-shadow);
   border-radius: 1.25rem;

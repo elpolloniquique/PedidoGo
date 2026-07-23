@@ -1,4 +1,4 @@
-import { AppShell, Surface } from '@pedidosgo/ui';
+import { AppShell } from '@pedidosgo/ui';
 import type { ReactNode } from 'react';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
@@ -8,7 +8,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       title="Panel del comercio"
       subtitle="Gestioná pedidos, sucursales y repartidores desde un solo lugar."
     >
-      <Surface className="text-left">{children}</Surface>
+      {children}
     </AppShell>
   );
 }
