@@ -45,7 +45,6 @@ export function DeliveryEvidenceGallery({ items }: { items: Omit<EvidenceItem, '
       {withUrls.map((item) => (
         <li key={item.evidenceId} className="overflow-hidden rounded-xl border border-slate-200">
           {item.url ? (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={item.url}
               alt={item.evidenceType}
