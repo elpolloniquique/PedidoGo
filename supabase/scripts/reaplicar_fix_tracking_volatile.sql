@@ -1,6 +1,6 @@
--- PedidosGo hotfix: get_public_tracking debe ser VOLATILE
--- (assert_rate_limit hace INSERT; STABLE fuerza transacción read-only → error 25006)
--- Idempotente: DROP + CREATE
+-- PedidosGo — RE-EJECUTABLE: arreglar get_public_tracking (VOLATILE)
+-- Puedes correr este script las veces que quieras en SQL Editor.
+-- Soluciona: "cannot execute INSERT in a read-only transaction" (25006)
 
 DROP FUNCTION IF EXISTS public.get_public_tracking(TEXT);
 
@@ -190,5 +190,16 @@ $$;
 
 GRANT EXECUTE ON FUNCTION public.get_public_tracking(TEXT) TO anon, authenticated;
 
-COMMENT ON FUNCTION public.get_public_tracking(TEXT) IS
-  'Hotfix: VOLATILE para permitir rate-limit (INSERT) sin error 25006.';
+-- Verificación: debe salir valid=false, error_code=not_found (o disabled)
+SELECT valid, error_code
+FROM public.get_public_tracking('token_inexistente_fase12_test_xx');
+
+-- Debe mostrar volatilidad = 'v' (VOLATILE), no 's' (STABLE)
+SELECT p.proname, CASE p.provolatile
+  WHEN 'i' THEN 'IMMUTABLE'
+  WHEN 's' THEN 'STABLE'
+  WHEN 'v' THEN 'VOLATILE'
+END AS volatilidad
+FROM pg_proc p
+JOIN pg_namespace n ON n.oid = p.pronamespace
+WHERE n.nspname = 'public' AND p.proname = 'get_public_tracking';
