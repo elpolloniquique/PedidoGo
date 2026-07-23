@@ -11,6 +11,7 @@
 | [QA-CHECKLIST.md](./QA-CHECKLIST.md) | Pruebas manuales antes de producción |
 | [HANDOFF.md](./HANDOFF.md) | Entrega del proyecto a otro equipo |
 | [FASE-16.md](./FASE-16.md) | Cierre del roadmap de fases |
+| [manuals/](./manuals/) | Manuales por rol (Fase 19) |
 
 ## Fases de desarrollo (historial)
 
@@ -34,6 +35,7 @@
 | 16 | [FASE-16.md](./FASE-16.md) | Docs finales / cierre |
 | 17 | [FASE-17.md](./FASE-17.md) | Evidencia fotográfica de entrega |
 | 18 | [FASE-18.md](./FASE-18.md) | Webhooks comercio + tickets soporte |
+| 19 | [FASE-19.md](./FASE-19.md) | Dashboards, cron webhooks, manuales |
 
 ## Scripts SQL útiles
 

@@ -61,4 +61,4 @@ Verificá: `supabase/scripts/verificar_fase18.sql`
 
 ## Próxima fase sugerida
 
-**Fase 19** — Dashboards analíticos / Edge Function de despacho automático de webhooks / dominios propios.
+**Fase 19** — Dashboards, cron de webhooks y manuales (ver `FASE-19.md`).

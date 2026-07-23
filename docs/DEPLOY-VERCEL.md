@@ -45,6 +45,7 @@ MAPBOX_SECRET_TOKEN
 
 ```text
 NEXT_PUBLIC_CUSTOMER_TRACKING_URL=https://TU-tracking.vercel.app
+CRON_SECRET=un_secreto_largo   # Fase 19: cron /api/cron/dispatch-webhooks
 ```
 
 ## 3. Supabase — Redirect URLs

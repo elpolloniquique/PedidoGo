@@ -1,4 +1,5 @@
 import { requireAppUser } from '@/lib/auth';
+import { getMerchantDashboardMetrics } from '@/lib/dashboard';
 import { listBranches, requireMerchantContext } from '@/lib/merchant';
 import { createClient } from '@/lib/supabase/server';
 import { Alert, HomeActionGrid, Surface } from '@pedidosgo/ui';
@@ -21,7 +22,10 @@ export default async function MerchantHomePage() {
   }
 
   const { merchant, membershipRole } = await requireMerchantContext();
-  const branches = await listBranches(merchant.id);
+  const [branches, metrics] = await Promise.all([
+    listBranches(merchant.id),
+    getMerchantDashboardMetrics(),
+  ]);
   const primary = branches[0];
 
   const actions = [
@@ -90,6 +94,29 @@ export default async function MerchantHomePage() {
           </Alert>
         </div>
       </Surface>
+
+      {metrics ? (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { label: 'Pedidos hoy', value: metrics.ordersToday },
+            { label: 'Activos', value: metrics.ordersActive },
+            { label: 'Entregados hoy', value: metrics.ordersDeliveredToday },
+            { label: 'Buscando repartidor', value: metrics.jobsSearching },
+          ].map((m) => (
+            <div
+              key={m.label}
+              className="rounded-2xl border border-teal-900/10 bg-white/90 p-4 shadow-sm"
+            >
+              <p className="text-[0.7rem] font-semibold tracking-[0.12em] text-teal-800 uppercase">
+                {m.label}
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-2xl font-semibold">
+                {m.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : null}
 
       <HomeActionGrid actions={actions} />
 

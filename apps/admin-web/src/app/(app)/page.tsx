@@ -30,6 +30,12 @@ export default async function AdminHomePage() {
       <HomeActionGrid
         actions={[
           {
+            href: '/dashboard',
+            title: 'Dashboard',
+            description: 'Métricas en vivo: repartidores, pedidos y finanzas.',
+            initial: 'D',
+          },
+          {
             href: '/drivers',
             title: 'Repartidores',
             description: 'Revisá solicitudes, documentos y estados de aprobación.',
